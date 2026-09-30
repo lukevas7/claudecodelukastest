@@ -6,7 +6,7 @@
 <title>Finance Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&amp;family=Manrope:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&amp;family=Manrope:wght@500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 /* Tokens: taken as-is from the "D · Ring" widget (figma-export/all-widgets.html). Use only these. */
 :root{
@@ -32,6 +32,9 @@
   --weight-title:700;
   --weight-label:600;
   --tracking-number:-0.03em;
+  /* small-text tuning (readability pass; not in the widget) */
+  --leading-label:1.4;
+  --tracking-label:0.01em;
 
   /* shape */
   --radius-pill:999px;
@@ -59,7 +62,9 @@ h1,h2,h3,p{margin:0}
 
 /* shared pieces */
 .title{font-size:var(--text-title);font-weight:var(--weight-title)}
-.label{font-size:var(--text-label);font-weight:var(--weight-label);color:var(--color-ink-muted)}
+.label{font-size:var(--text-label);font-weight:var(--weight-label);line-height:var(--leading-label);letter-spacing:var(--tracking-label);color:var(--color-ink-muted)}
+.label-key{color:var(--color-ink)}      /* a label that names the figure beside it */
+.meta{font-size:var(--text-title);font-weight:var(--weight-label);line-height:var(--leading-label);color:var(--color-ink-muted)} /* secondary table content */
 .pill{font-size:var(--text-label);font-weight:var(--weight-label);padding:var(--space-5) var(--space-10);border-radius:var(--radius-pill);background:var(--color-ink);color:var(--color-on-ink);white-space:nowrap}
 .num{font-family:var(--font-number);font-weight:var(--weight-number);letter-spacing:var(--tracking-number);line-height:1}
 .num-hero{font-size:var(--text-hero)}
@@ -94,7 +99,7 @@ h1,h2,h3,p{margin:0}
 .readout{display:flex;align-items:baseline;gap:var(--space-6)}
 .chart{position:relative;min-width:0}
 .chart svg{display:block;overflow:visible}
-.chart text{font-family:var(--font-ui);font-size:var(--text-label);font-weight:var(--weight-label);fill:var(--color-ink-muted)}
+.chart text{font-family:var(--font-ui);font-size:var(--text-label);font-weight:var(--weight-label);letter-spacing:var(--tracking-label);fill:var(--color-ink-muted)}
 .hit{fill:transparent;cursor:default}
 .hit:focus{outline:none}
 .hit:focus-visible{fill:var(--data-2)}
@@ -177,11 +182,11 @@ h1,h2,h3,p{margin:0}
           </div>
           <div class="split">
             <div>
-              <span class="key label"><span class="dot"></span>Own</span>
+              <span class="key label label-key"><span class="dot"></span>Own</span>
               <span class="num num-figure">$412.3K</span>
             </div>
             <div>
-              <span class="key label"><span class="dot dot-2"></span>Owe</span>
+              <span class="key label label-key"><span class="dot dot-2"></span>Owe</span>
               <span class="num num-figure">$127.7K</span>
             </div>
           </div>
@@ -222,7 +227,7 @@ h1,h2,h3,p{margin:0}
         <span class="label">kept since April</span>
       </div>
       <div class="head">
-        <div class="key label" style="gap:var(--space-16)">
+        <div class="key label label-key" style="gap:var(--space-16)">
           <span class="key"><span class="dot"></span>In</span>
           <span class="key"><span class="dot dot-2"></span>Out</span>
         </div>
@@ -230,9 +235,9 @@ h1,h2,h3,p{margin:0}
       </div>
       <div class="cols" id="cashflow" role="img" aria-label="Monthly income and spending, April to September 2026"></div>
       <div class="totals">
-        <div><span class="label">In</span><span class="num num-figure">$58.6K</span></div>
-        <div><span class="label">Out</span><span class="num num-figure">$42.1K</span></div>
-        <div><span class="label">Kept</span><span class="num num-figure">$16.5K</span></div>
+        <div><span class="label label-key">In</span><span class="num num-figure">$58.6K</span></div>
+        <div><span class="label label-key">Out</span><span class="num num-figure">$42.1K</span></div>
+        <div><span class="label label-key">Kept</span><span class="num num-figure">$16.5K</span></div>
       </div>
     </section>
 
@@ -354,10 +359,10 @@ document.getElementById('transactions').innerHTML =
   `<div class="tx-row tx-head" role="row"><span class="label" role="columnheader">Date</span><span class="label" role="columnheader">Merchant</span><span class="label" role="columnheader">Category</span><span class="label" role="columnheader">Account</span><span class="label amt" role="columnheader">Amount</span></div>` +
   transactions.map(([d, m, c, a, v]) =>
     `<div class="tx-row" role="row">
-       <span class="label" role="cell">${d}</span>
+       <span class="meta" role="cell">${d}</span>
        <b role="cell">${esc(m)}</b>
-       <span class="label" role="cell">${c}</span>
-       <span class="label" role="cell">${a}</span>
+       <span class="meta" role="cell">${c}</span>
+       <span class="meta" role="cell">${a}</span>
        <span class="num num-row amt" role="cell">${v > 0 ? '+' : '−'}${usd(v)}</span>
      </div>`).join('');
 
