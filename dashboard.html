@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finance Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&amp;family=Manrope:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* Tokens: taken as-is from the "D · Ring" widget (figma-export/all-widgets.html). Use only these. */
+:root{
+  /* colour */
+  --color-bg:#DCEADF;                    /* widget background */
+  --color-ink:#10291F;                   /* primary text, pill fill */
+  --color-ink-muted:#2E4A3E;             /* secondary labels */
+  --color-surface:rgba(255,255,255,0.55);/* Own / Owe tiles */
+  --color-on-ink:#DCEADF;                /* pill text */
+  /* data: the ring's two tones */
+  --data-1:#10291F;
+  --data-2:rgba(16,41,31,0.22);          /* ring liabilities arc */
+  --data-2-dot:rgba(16,41,31,0.30);      /* "Owe" legend dot */
+
+  /* type */
+  --font-number:Unbounded,system-ui,sans-serif;
+  --font-ui:Manrope,system-ui,sans-serif;
+  --text-hero:34px;                      /* $284.6K */
+  --text-figure:17px;                    /* $412.3K */
+  --text-title:14px;                     /* "Net worth" */
+  --text-label:12px;                     /* pill, "69% of what you own" */
+  --weight-number:700;
+  --weight-title:700;
+  --weight-label:600;
+  --tracking-number:-0.03em;
+
+  /* shape */
+  --radius-pill:999px;
+  --radius-tile:16px;
+  --radius-dot:50%;
+  --dot:8px;
+
+  /* spacing */
+  --space-4:4px;   /* tile inner gap */
+  --space-5:5px;   /* pill block padding, ring segment gap */
+  --space-6:6px;   /* dot-to-label, figure stack */
+  --space-10:10px; /* tile grid gap, pill inline padding */
+  --space-12:12px; /* tile block padding */
+  --space-14:14px; /* tile inline padding */
+  --space-16:16px; /* widget stack gap */
+  --space-24:24px; /* widget padding */
+}
+
+*{box-sizing:border-box}
+html{background:var(--color-bg)}
+body{margin:0;background:var(--color-bg);color:var(--color-ink);font-family:var(--font-ui);font-size:var(--text-title);font-weight:500;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+::selection{background:var(--color-ink);color:var(--color-on-ink)}
+:focus-visible{outline:2px solid var(--color-ink);outline-offset:2px;border-radius:var(--radius-dot)}
+h1,h2,h3,p{margin:0}
+
+/* shared pieces */
+.title{font-size:var(--text-title);font-weight:var(--weight-title)}
+.label{font-size:var(--text-label);font-weight:var(--weight-label);color:var(--color-ink-muted)}
+.pill{font-size:var(--text-label);font-weight:var(--weight-label);padding:var(--space-5) var(--space-10);border-radius:var(--radius-pill);background:var(--color-ink);color:var(--color-on-ink);white-space:nowrap}
+.num{font-family:var(--font-number);font-weight:var(--weight-number);letter-spacing:var(--tracking-number);line-height:1}
+.num-hero{font-size:var(--text-hero)}
+.num-figure{font-size:var(--text-figure)}
+.num-row{font-size:var(--text-title)}
+.dot{width:var(--dot);height:var(--dot);border-radius:var(--radius-dot);background:var(--data-1);flex:none}
+.dot-2{background:var(--data-2-dot)}
+.key{display:flex;align-items:center;gap:var(--space-6)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:var(--space-16)}
+.stack-6{display:flex;flex-direction:column;gap:var(--space-6)}
+.bar{height:var(--dot);border-radius:var(--radius-pill);background:var(--data-2);overflow:hidden}
+.bar > span{display:block;height:100%;border-radius:var(--radius-pill);background:var(--data-1)}
+
+/* page */
+.page{max-width:1440px;margin:0 auto;padding:var(--space-24);display:flex;flex-direction:column;gap:var(--space-16)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:0 var(--space-24)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--space-16);align-items:stretch}
+.card{background:var(--color-surface);border-radius:var(--radius-tile);padding:var(--space-24);display:flex;flex-direction:column;gap:var(--space-16);min-width:0}
+.span-4{grid-column:span 4}
+.span-8{grid-column:span 8}
+.accounts{grid-row:span 2}
+
+/* hero */
+.hero{display:grid;grid-template-columns:312px minmax(0,1fr);gap:var(--space-24)}
+.ring-col{display:flex;flex-direction:column;align-items:center;gap:var(--space-16)}
+.ring{position:relative;width:208px;height:208px}
+.ring svg{display:block}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-6)}
+.split{align-self:stretch;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-10);margin-top:auto}
+.split > div{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-12) var(--space-14);border-radius:var(--radius-tile);background:var(--color-bg)}
+.trend-col{display:flex;flex-direction:column;gap:var(--space-16);min-width:0}
+.readout{display:flex;align-items:baseline;gap:var(--space-6)}
+.chart{position:relative;min-width:0}
+.chart svg{display:block;overflow:visible}
+.chart text{font-family:var(--font-ui);font-size:var(--text-label);font-weight:var(--weight-label);fill:var(--color-ink-muted)}
+.hit{fill:transparent;cursor:default}
+.hit:focus{outline:none}
+.hit:focus-visible{fill:var(--data-2)}
+
+/* accounts */
+.group{display:flex;flex-direction:column;gap:var(--space-14)}
+.group + .group{margin-top:var(--space-10)}
+.group-head{display:flex;justify-content:space-between;align-items:center;padding:var(--space-12) var(--space-14);border-radius:var(--radius-tile);background:var(--color-bg)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:var(--space-12);padding:0 var(--space-14)}
+.row-name{display:flex;flex-direction:column;gap:var(--space-4);min-width:0}
+.row-name b{font-weight:var(--weight-label)}
+
+/* cash flow */
+.cols{display:flex;align-items:flex-end;justify-content:space-between;height:176px;gap:var(--space-10)}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-6);height:100%;justify-content:flex-end;border-radius:var(--radius-tile);cursor:default}
+.col .pair{display:flex;align-items:flex-end;gap:var(--space-4);flex:1;width:100%;justify-content:center}
+.col .pair span{width:14px;border-radius:var(--radius-pill);background:var(--data-1)}
+.col .pair span + span{background:var(--data-2)}
+.col.is-on .label{color:var(--color-ink)}
+.totals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-10)}
+.totals > div{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-12) var(--space-14);border-radius:var(--radius-tile);background:var(--color-bg)}
+
+/* lists with bars */
+.meter{display:flex;flex-direction:column;gap:var(--space-6)}
+.meter-top{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-12)}
+.meters{display:flex;flex-direction:column;gap:var(--space-16);margin-top:auto}
+
+/* transactions */
+.tx{display:flex;flex-direction:column;gap:var(--space-4)}
+.tx-row{display:grid;grid-template-columns:72px minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) 120px;align-items:center;gap:var(--space-16);padding:var(--space-10) var(--space-14);border-radius:var(--radius-tile)}
+.tx-row:nth-child(even){background:var(--color-bg)}
+.tx-head{padding-top:0;padding-bottom:0}
+.tx-row .amt{text-align:right}
+.tx-row b{font-weight:var(--weight-label)}
+
+@media (max-width:1180px){
+  .span-4,.span-8{grid-column:span 6}
+  .accounts{grid-row:auto}
+  .hero-card,.tx-card{grid-column:1 / -1}
+}
+@media (max-width:760px){
+  .page{padding:var(--space-16)}
+  .topbar{padding:0}
+  .span-4,.span-8{grid-column:1 / -1}
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .tx-row{grid-template-columns:56px minmax(0,1fr) 96px}
+  .tx-row > :nth-child(3),.tx-row > :nth-child(4){display:none}
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="topbar">
+    <h1 class="title">Overview</h1>
+    <span class="label">Updated 30 Sep 2026</span>
+  </header>
+
+  <div class="grid">
+
+    <!-- Net worth hero -->
+    <section class="card span-8 hero-card" aria-labelledby="nw-title">
+      <div class="hero">
+        <div class="ring-col">
+          <div class="head" style="align-self:stretch">
+            <h2 class="title" id="nw-title">Net worth</h2>
+            <span class="pill">+15.5% yr</span>
+          </div>
+          <div class="ring">
+            <svg width="208" height="208" viewBox="0 0 208 208" role="img" aria-label="Net worth is 69% of assets; liabilities are 31%">
+              <g transform="rotate(-90 104 104)">
+                <circle cx="104" cy="104" r="88" fill="none" stroke="var(--data-1)" stroke-width="20" stroke-dasharray="376.7 552.9"></circle>
+                <circle cx="104" cy="104" r="88" fill="none" stroke="var(--data-2)" stroke-width="20" stroke-dasharray="166.2 552.9" stroke-dashoffset="-381.7"></circle>
+              </g>
+            </svg>
+            <div class="ring-center">
+              <span class="num num-hero">$284.6K</span>
+              <span class="label">69% of what you own</span>
+            </div>
+          </div>
+          <div class="split">
+            <div>
+              <span class="key label"><span class="dot"></span>Own</span>
+              <span class="num num-figure">$412.3K</span>
+            </div>
+            <div>
+              <span class="key label"><span class="dot dot-2"></span>Owe</span>
+              <span class="num num-figure">$127.7K</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="trend-col">
+          <div class="head">
+            <h3 class="title">Last 12 months</h3>
+            <span class="label">+$38.2K since Oct 2025</span>
+          </div>
+          <div class="readout" aria-live="polite">
+            <span class="num num-figure" id="trend-value">$284.6K</span>
+            <span class="label" id="trend-month">Sep 2026</span>
+          </div>
+          <div class="chart" id="trend" role="img" aria-label="Net worth by month, October 2025 to September 2026, rising from $246.4K to $284.6K"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accounts -->
+    <section class="card span-4 accounts" aria-labelledby="acc-title">
+      <div class="head">
+        <h2 class="title" id="acc-title">Accounts</h2>
+        <span class="label">11 linked</span>
+      </div>
+      <div class="group" id="assets"></div>
+      <div class="group" id="liabilities"></div>
+    </section>
+
+    <!-- Cash flow -->
+    <section class="card span-4" aria-labelledby="cf-title">
+      <div class="head">
+        <h2 class="title" id="cf-title">Cash flow</h2>
+        <span class="pill">28% saved</span>
+      </div>
+      <div class="stack-6">
+        <span class="num num-hero">$16.5K</span>
+        <span class="label">kept since April</span>
+      </div>
+      <div class="head">
+        <div class="key label" style="gap:var(--space-16)">
+          <span class="key"><span class="dot"></span>In</span>
+          <span class="key"><span class="dot dot-2"></span>Out</span>
+        </div>
+        <span class="label" id="cf-readout" aria-live="polite"></span>
+      </div>
+      <div class="cols" id="cashflow" role="img" aria-label="Monthly income and spending, April to September 2026"></div>
+      <div class="totals">
+        <div><span class="label">In</span><span class="num num-figure">$58.6K</span></div>
+        <div><span class="label">Out</span><span class="num num-figure">$42.1K</span></div>
+        <div><span class="label">Kept</span><span class="num num-figure">$16.5K</span></div>
+      </div>
+    </section>
+
+    <!-- Spending -->
+    <section class="card span-4" aria-labelledby="sp-title">
+      <div class="head">
+        <h2 class="title" id="sp-title">Spending</h2>
+        <span class="label">September</span>
+      </div>
+      <div class="stack-6">
+        <span class="num num-hero">$6.4K</span>
+        <span class="label">spent this month, $500 less than August</span>
+      </div>
+      <div class="meters" id="spending"></div>
+    </section>
+
+    <!-- Savings goals -->
+    <section class="card span-4" aria-labelledby="goal-title">
+      <div class="head">
+        <h2 class="title" id="goal-title">Savings goals</h2>
+        <span class="pill">56% there</span>
+      </div>
+      <div class="stack-6">
+        <span class="num num-hero">$40.0K</span>
+        <span class="label">saved toward $71.0K</span>
+      </div>
+      <div class="meters" id="goals"></div>
+    </section>
+
+    <!-- Recent transactions -->
+    <section class="card span-8 tx-card" aria-labelledby="tx-title">
+      <div class="head">
+        <h2 class="title" id="tx-title">Recent transactions</h2>
+        <span class="label">Last 8 days</span>
+      </div>
+      <div class="tx" id="transactions" role="table" aria-labelledby="tx-title"></div>
+    </section>
+
+  </div>
+</main>
+
+<script>
+const k = v => '$' + (v / 1000).toFixed(1) + 'K';
+const usd = v => '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- data ---------- */
+const trend = [
+  ['Oct 2025', 246440], ['Nov 2025', 249120], ['Dec 2025', 252880], ['Jan 2026', 251310],
+  ['Feb 2026', 256920], ['Mar 2026', 254120], ['Apr 2026', 260460], ['May 2026', 265310],
+  ['Jun 2026', 268920], ['Jul 2026', 273580], ['Aug 2026', 279040], ['Sep 2026', 284650]
+];
+const assets = [
+  ['Home', 'Estimated value', 166000], ['401(k)', 'Retirement', 96900],
+  ['Brokerage', 'Investments', 58400], ['High-yield savings', 'Cash, 4.1% APY', 32180],
+  ['Roth IRA', 'Retirement', 31600], ['Car', 'Estimated value', 18800], ['Checking', 'Cash', 8420]
+];
+const liabilities = [
+  ['Mortgage', '3.4% fixed, 22 years left', 98400], ['Student loan', '4.9%', 14600],
+  ['Auto loan', '5.9%, 26 months left', 11250], ['Credit card', 'Paid in full monthly', 3400]
+];
+const cashflow = [
+  ['Apr', 9600, 7100], ['May', 9600, 6800], ['Jun', 9600, 7900],
+  ['Jul', 10400, 6600], ['Aug', 9600, 6900], ['Sep', 9800, 6400]
+];
+const spending = [
+  ['Housing', 2140], ['Groceries', 780], ['Transport', 520], ['Dining out', 460], ['Utilities', 310]
+];
+const SPENT = 6400;
+const goals = [
+  ['Emergency fund', 24000, 30000, 'Six months of expenses'],
+  ['Japan trip', 3600, 6000, 'April 2027'],
+  ['Kitchen renovation', 8150, 20000, 'Spring 2028'],
+  ['Next car', 4200, 15000, 'When the auto loan ends']
+];
+const transactions = [
+  ['Sep 29', 'Whole Foods Market', 'Groceries', 'Checking', -84.20],
+  ['Sep 28', 'Payroll', 'Income', 'Checking', 4900],
+  ['Sep 27', 'Shell', 'Transport', 'Credit card', -52.10],
+  ['Sep 26', 'Mortgage payment', 'Housing', 'Checking', -1480],
+  ['Sep 25', 'Nopa', 'Dining out', 'Credit card', -96.40],
+  ['Sep 24', 'PG&E', 'Utilities', 'Checking', -142.30],
+  ['Sep 23', 'Spotify', 'Subscriptions', 'Credit card', -11.99],
+  ['Sep 22', "Trader Joe's", 'Groceries', 'Credit card', -63.75]
+];
+
+/* ---------- accounts ---------- */
+function group(el, name, dotClass, rows) {
+  const total = rows.reduce((s, r) => s + r[2], 0);
+  el.innerHTML =
+    `<div class="group-head"><span class="key title"><span class="dot ${dotClass}"></span>${name}</span><span class="num num-figure">${k(total)}</span></div>` +
+    rows.map(([n, sub, v]) =>
+      `<div class="row"><div class="row-name"><b>${esc(n)}</b><span class="label">${esc(sub)}</span></div><span class="num num-row">${k(v)}</span></div>`
+    ).join('');
+}
+group(document.getElementById('assets'), 'Assets', '', assets);
+group(document.getElementById('liabilities'), 'Liabilities', 'dot-2', liabilities);
+
+/* ---------- spending ---------- */
+const topSpend = spending[0][1];
+document.getElementById('spending').innerHTML = spending.map(([n, v]) =>
+  `<div class="meter">
+     <div class="meter-top"><b style="font-weight:var(--weight-label)">${n}</b><span class="key"><span class="label">${Math.round(v / SPENT * 100)}%</span><span class="num num-row">${'$' + v.toLocaleString('en-US')}</span></span></div>
+     <div class="bar" role="img" aria-label="${n}: $${v.toLocaleString('en-US')}"><span style="width:${(v / topSpend * 100).toFixed(1)}%"></span></div>
+   </div>`).join('');
+
+/* ---------- goals ---------- */
+document.getElementById('goals').innerHTML = goals.map(([n, have, want, when]) => {
+  const pct = Math.round(have / want * 100);
+  return `<div class="meter">
+     <div class="meter-top"><b style="font-weight:var(--weight-label)">${n}</b><span class="num num-row">${k(have)}</span></div>
+     <div class="bar" role="img" aria-label="${n}: ${pct}% of ${k(want)}"><span style="width:${pct}%"></span></div>
+     <div class="meter-top"><span class="label">${when}</span><span class="label">${pct}% of ${k(want)}</span></div>
+   </div>`;
+}).join('');
+
+/* ---------- transactions ---------- */
+document.getElementById('transactions').innerHTML =
+  `<div class="tx-row tx-head" role="row"><span class="label" role="columnheader">Date</span><span class="label" role="columnheader">Merchant</span><span class="label" role="columnheader">Category</span><span class="label" role="columnheader">Account</span><span class="label amt" role="columnheader">Amount</span></div>` +
+  transactions.map(([d, m, c, a, v]) =>
+    `<div class="tx-row" role="row">
+       <span class="label" role="cell">${d}</span>
+       <b role="cell">${esc(m)}</b>
+       <span class="label" role="cell">${c}</span>
+       <span class="label" role="cell">${a}</span>
+       <span class="num num-row amt" role="cell">${v > 0 ? '+' : '−'}${usd(v)}</span>
+     </div>`).join('');
+
+/* ---------- cash flow ---------- */
+const cfEl = document.getElementById('cashflow');
+const cfRead = document.getElementById('cf-readout');
+const cfMax = 11000;
+cfEl.innerHTML = cashflow.map(([m, i, o], idx) =>
+  `<div class="col" tabindex="0" data-i="${idx}" aria-label="${m}: in ${k(i)}, out ${k(o)}">
+     <div class="pair"><span style="height:${(i / cfMax * 100).toFixed(1)}%"></span><span style="height:${(o / cfMax * 100).toFixed(1)}%"></span></div>
+     <span class="label">${m}</span>
+   </div>`).join('');
+function cfShow(idx) {
+  const [m, i, o] = cashflow[idx];
+  cfRead.textContent = `${m}: ${k(i)} in, ${k(o)} out`;
+  cfEl.querySelectorAll('.col').forEach((c, j) => c.classList.toggle('is-on', j === idx));
+}
+cfEl.querySelectorAll('.col').forEach(c => {
+  const idx = +c.dataset.i;
+  c.addEventListener('mouseenter', () => cfShow(idx));
+  c.addEventListener('focus', () => cfShow(idx));
+});
+cfEl.addEventListener('mouseleave', () => cfShow(cashflow.length - 1));
+cfShow(cashflow.length - 1);
+
+/* ---------- 12-month trend ---------- */
+const trendEl = document.getElementById('trend');
+const tVal = document.getElementById('trend-value');
+const tMonth = document.getElementById('trend-month');
+const NS = 'http://www.w3.org/2000/svg';
+const LO = 240000, HI = 290000;
+
+function drawTrend() {
+  const W = trendEl.clientWidth, H = 236;
+  const L = 40, B = 24, T = 6;
+  const pw = W - L, ph = H - B - T;
+  const x = i => L + (i + 0.5) * pw / trend.length;
+  const y = v => T + (HI - v) / (HI - LO) * ph;
+  const pts = trend.map(([, v], i) => [x(i), y(v)]);
+  const line = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  const base = (T + ph).toFixed(1);
+  const area = `${line} L${pts.at(-1)[0].toFixed(1)} ${base} L${pts[0][0].toFixed(1)} ${base} Z`;
+
+  let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true">`;
+  [250000, 270000, 290000].forEach(v => s += `<text x="0" y="${(y(v) + 4).toFixed(1)}">${k(v).replace('.0', '')}</text>`);
+  s += `<path d="${area}" fill="var(--data-2)"></path>`;
+  s += `<path d="${line}" fill="none" stroke="var(--data-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>`;
+  trend.forEach(([m], i) => s += `<text x="${x(i).toFixed(1)}" y="${H - 4}" text-anchor="middle">${m[0]}</text>`);
+  s += `<circle id="trend-dot" r="4" fill="var(--data-1)"></circle>`;
+  trend.forEach(([m, v], i) => s += `<rect class="hit" tabindex="0" data-i="${i}" x="${(L + i * pw / trend.length).toFixed(1)}" y="0" width="${(pw / trend.length).toFixed(1)}" height="${H}" aria-label="${m}: ${k(v)}"></rect>`);
+  s += '</svg>';
+  trendEl.innerHTML = s;
+
+  const dot = trendEl.querySelector('#trend-dot');
+  const show = i => {
+    dot.setAttribute('cx', pts[i][0]); dot.setAttribute('cy', pts[i][1]);
+    tVal.textContent = k(trend[i][1]); tMonth.textContent = trend[i][0];
+  };
+  trendEl.querySelectorAll('.hit').forEach(r => {
+    const i = +r.dataset.i;
+    r.addEventListener('mouseenter', () => show(i));
+    r.addEventListener('focus', () => show(i));
+  });
+  trendEl.querySelector('svg').addEventListener('mouseleave', () => show(trend.length - 1));
+  show(trend.length - 1);
+}
+drawTrend();
+new ResizeObserver(drawTrend).observe(trendEl);
+if (document.fonts) document.fonts.ready.then(drawTrend);
+</script>
+</body>
+</html>
