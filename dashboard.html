@@ -25,6 +25,7 @@
   --font-number:Unbounded,system-ui,sans-serif;
   --font-ui:Manrope,system-ui,sans-serif;
   --text-hero:34px;                      /* $284.6K */
+  --text-hero-ring:30px;                 /* $284.6K inside the ring, so it clears the stroke */
   --text-figure:17px;                    /* $412.3K */
   --text-title:14px;                     /* "Net worth" */
   --text-label:12px;                     /* pill, "69% of what you own" */
@@ -57,7 +58,10 @@
 html{background:var(--color-bg)}
 body{margin:0;background:var(--color-bg);color:var(--color-ink);font-family:var(--font-ui);font-size:var(--text-title);font-weight:500;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--color-ink);color:var(--color-on-ink)}
-:focus-visible{outline:2px solid var(--color-ink);outline-offset:2px;border-radius:var(--radius-dot)}
+:focus-visible{outline:2px solid var(--color-ink);outline-offset:4px}
+.chart:focus-visible,.cols:focus-visible{outline-offset:8px}
+.chart text.is-on{fill:var(--color-ink)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 h1,h2,h3,p{margin:0}
 
 /* shared pieces */
@@ -68,6 +72,7 @@ h1,h2,h3,p{margin:0}
 .pill{font-size:var(--text-label);font-weight:var(--weight-label);padding:var(--space-5) var(--space-10);border-radius:var(--radius-pill);background:var(--color-ink);color:var(--color-on-ink);white-space:nowrap}
 .num{font-family:var(--font-number);font-weight:var(--weight-number);letter-spacing:var(--tracking-number);line-height:1}
 .num-hero{font-size:var(--text-hero)}
+.num-ring{font-size:var(--text-hero-ring)}
 .num-figure{font-size:var(--text-figure)}
 .num-row{font-size:var(--text-title)}
 .dot{width:var(--dot);height:var(--dot);border-radius:var(--radius-dot);background:var(--data-1);flex:none}
@@ -97,12 +102,10 @@ h1,h2,h3,p{margin:0}
 .split > div{display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-12) var(--space-14);border-radius:var(--radius-tile);background:var(--color-bg)}
 .trend-col{display:flex;flex-direction:column;gap:var(--space-16);min-width:0}
 .readout{display:flex;align-items:baseline;gap:var(--space-6)}
-.chart{position:relative;min-width:0}
+.chart{position:relative;min-width:0;border-radius:var(--radius-tile)}
 .chart svg{display:block;overflow:visible}
 .chart text{font-family:var(--font-ui);font-size:var(--text-label);font-weight:var(--weight-label);letter-spacing:var(--tracking-label);fill:var(--color-ink-muted)}
 .hit{fill:transparent;cursor:default}
-.hit:focus{outline:none}
-.hit:focus-visible{fill:var(--data-2)}
 
 /* accounts */
 .group{display:flex;flex-direction:column;gap:var(--space-14)}
@@ -113,8 +116,8 @@ h1,h2,h3,p{margin:0}
 .row-name b{font-weight:var(--weight-label)}
 
 /* cash flow */
-.cols{display:flex;align-items:flex-end;justify-content:space-between;height:176px;gap:var(--space-10)}
-.col{flex:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-6);height:100%;justify-content:flex-end;border-radius:var(--radius-tile);cursor:default}
+.cols{border-radius:var(--radius-tile);display:flex;align-items:flex-end;justify-content:space-between;height:176px;gap:var(--space-10)}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-6);height:100%;justify-content:flex-end;cursor:default}
 .col .pair{display:flex;align-items:flex-end;gap:var(--space-4);flex:1;width:100%;justify-content:center}
 .col .pair span{width:14px;border-radius:var(--radius-pill);background:var(--data-1)}
 .col .pair span + span{background:var(--data-2)}
@@ -176,7 +179,7 @@ h1,h2,h3,p{margin:0}
               </g>
             </svg>
             <div class="ring-center">
-              <span class="num num-hero">$284.6K</span>
+              <span class="num num-ring">$284.6K</span>
               <span class="label">69% of what you own</span>
             </div>
           </div>
@@ -197,11 +200,12 @@ h1,h2,h3,p{margin:0}
             <h3 class="title">Last 12 months</h3>
             <span class="label">+$38.2K since Oct 2025</span>
           </div>
-          <div class="readout" aria-live="polite">
+          <div class="readout">
             <span class="num num-figure" id="trend-value">$284.6K</span>
             <span class="label" id="trend-month">Sep 2026</span>
           </div>
-          <div class="chart" id="trend" role="img" aria-label="Net worth by month, October 2025 to September 2026, rising from $246.4K to $284.6K"></div>
+          <div class="chart" id="trend" tabindex="0" role="group" aria-roledescription="line chart" aria-label="Net worth by month, October 2025 to September 2026, rising from $246.4K to $284.6K. Use the arrow keys to read each month."></div>
+          <p class="sr-only" id="trend-live" aria-live="polite"></p>
         </div>
       </div>
     </section>
@@ -220,10 +224,10 @@ h1,h2,h3,p{margin:0}
     <section class="card span-4" aria-labelledby="cf-title">
       <div class="head">
         <h2 class="title" id="cf-title">Cash flow</h2>
-        <span class="pill">28% saved</span>
+        <span class="pill" id="cf-pill"></span>
       </div>
       <div class="stack-6">
-        <span class="num num-hero">$16.5K</span>
+        <span class="num num-hero" id="cf-kept-hero"></span>
         <span class="label">kept since April</span>
       </div>
       <div class="head">
@@ -231,13 +235,14 @@ h1,h2,h3,p{margin:0}
           <span class="key"><span class="dot"></span>In</span>
           <span class="key"><span class="dot dot-2"></span>Out</span>
         </div>
-        <span class="label" id="cf-readout" aria-live="polite"></span>
+        <span class="label" id="cf-readout"></span>
       </div>
-      <div class="cols" id="cashflow" role="img" aria-label="Monthly income and spending, April to September 2026"></div>
+      <div class="cols" id="cashflow" tabindex="0" role="group" aria-roledescription="bar chart" aria-label="Money in and out by month, April to September 2026. Use the arrow keys to read each month."></div>
+      <p class="sr-only" id="cf-live" aria-live="polite"></p>
       <div class="totals">
-        <div><span class="label label-key">In</span><span class="num num-figure">$58.6K</span></div>
-        <div><span class="label label-key">Out</span><span class="num num-figure">$42.1K</span></div>
-        <div><span class="label label-key">Kept</span><span class="num num-figure">$16.5K</span></div>
+        <div><span class="label label-key">In</span><span class="num num-figure" id="cf-in"></span></div>
+        <div><span class="label label-key">Out</span><span class="num num-figure" id="cf-out"></span></div>
+        <div><span class="label label-key">Kept</span><span class="num num-figure" id="cf-kept"></span></div>
       </div>
     </section>
 
@@ -337,12 +342,13 @@ group(document.getElementById('assets'), 'Assets', '', assets);
 group(document.getElementById('liabilities'), 'Liabilities', 'dot-2', liabilities);
 
 /* ---------- spending ---------- */
-const topSpend = spending[0][1];
-document.getElementById('spending').innerHTML = spending.map(([n, v]) =>
-  `<div class="meter">
-     <div class="meter-top"><b style="font-weight:var(--weight-label)">${n}</b><span class="key"><span class="label">${Math.round(v / SPENT * 100)}%</span><span class="num num-row">${'$' + v.toLocaleString('en-US')}</span></span></div>
-     <div class="bar" role="img" aria-label="${n}: $${v.toLocaleString('en-US')}"><span style="width:${(v / topSpend * 100).toFixed(1)}%"></span></div>
-   </div>`).join('');
+document.getElementById('spending').innerHTML = spending.map(([n, v]) => {
+  const share = v / SPENT * 100;
+  return `<div class="meter">
+     <div class="meter-top"><b style="font-weight:var(--weight-label)">${n}</b><span class="key"><span class="label">${Math.round(share)}%</span><span class="num num-row">${'$' + v.toLocaleString('en-US')}</span></span></div>
+     <div class="bar" role="img" aria-label="${n}: $${v.toLocaleString('en-US')}, ${Math.round(share)}% of September spending"><span style="width:${share.toFixed(1)}%"></span></div>
+   </div>`;
+}).join('');
 
 /* ---------- goals ---------- */
 document.getElementById('goals').innerHTML = goals.map(([n, have, want, when]) => {
@@ -366,34 +372,64 @@ document.getElementById('transactions').innerHTML =
        <span class="num num-row amt" role="cell">${v > 0 ? '+' : '−'}${usd(v)}</span>
      </div>`).join('');
 
+/* Arrow keys, Home and End move through a chart's months; returns null for other keys. */
+function stepIndex(e, cur, len) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') return Math.min(cur + 1, len - 1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') return Math.max(cur - 1, 0);
+  if (e.key === 'Home') return 0;
+  if (e.key === 'End') return len - 1;
+  return null;
+}
+
 /* ---------- cash flow ---------- */
 const cfEl = document.getElementById('cashflow');
 const cfRead = document.getElementById('cf-readout');
-const cfMax = 11000;
-cfEl.innerHTML = cashflow.map(([m, i, o], idx) =>
-  `<div class="col" tabindex="0" data-i="${idx}" aria-label="${m}: in ${k(i)}, out ${k(o)}">
-     <div class="pair"><span style="height:${(i / cfMax * 100).toFixed(1)}%"></span><span style="height:${(o / cfMax * 100).toFixed(1)}%"></span></div>
-     <span class="label">${m}</span>
+const cfLive = document.getElementById('cf-live');
+const cfIn = cashflow.reduce((s, r) => s + r[1], 0);
+const cfOut = cashflow.reduce((s, r) => s + r[2], 0);
+const cfKept = cfIn - cfOut;
+document.getElementById('cf-in').textContent = k(cfIn);
+document.getElementById('cf-out').textContent = k(cfOut);
+document.getElementById('cf-kept').textContent = k(cfKept);
+document.getElementById('cf-kept-hero').textContent = k(cfKept);
+document.getElementById('cf-pill').textContent = Math.round(cfKept / cfIn * 100) + '% saved';
+
+const cfMax = Math.ceil(Math.max(...cashflow.map(r => Math.max(r[1], r[2]))) / 1000) * 1000;
+cfEl.innerHTML = cashflow.map(([m, i, o]) =>
+  `<div class="col">
+     <div class="pair" aria-hidden="true"><span style="height:${(i / cfMax * 100).toFixed(1)}%"></span><span style="height:${(o / cfMax * 100).toFixed(1)}%"></span></div>
+     <span class="label" aria-hidden="true">${m}</span>
    </div>`).join('');
+const cfCols = [...cfEl.querySelectorAll('.col')];
+let cfCur = cashflow.length - 1;
 function cfShow(idx) {
   const [m, i, o] = cashflow[idx];
   cfRead.textContent = `${m}: ${k(i)} in, ${k(o)} out`;
-  cfEl.querySelectorAll('.col').forEach((c, j) => c.classList.toggle('is-on', j === idx));
+  cfCols.forEach((c, j) => c.classList.toggle('is-on', j === idx));
+  return `${m}: ${k(i)} in, ${k(o)} out, ${k(i - o)} kept`;
 }
-cfEl.querySelectorAll('.col').forEach(c => {
-  const idx = +c.dataset.i;
-  c.addEventListener('mouseenter', () => cfShow(idx));
-  c.addEventListener('focus', () => cfShow(idx));
+cfCols.forEach((c, idx) => c.addEventListener('mouseenter', () => cfShow(idx)));
+cfEl.addEventListener('mouseleave', () => cfShow(cfCur));
+cfEl.addEventListener('keydown', e => {
+  const next = stepIndex(e, cfCur, cashflow.length);
+  if (next === null) return;
+  e.preventDefault();
+  cfCur = next;
+  cfLive.textContent = cfShow(cfCur);
 });
-cfEl.addEventListener('mouseleave', () => cfShow(cashflow.length - 1));
-cfShow(cashflow.length - 1);
+cfShow(cfCur);
 
 /* ---------- 12-month trend ---------- */
 const trendEl = document.getElementById('trend');
 const tVal = document.getElementById('trend-value');
 const tMonth = document.getElementById('trend-month');
-const NS = 'http://www.w3.org/2000/svg';
-const LO = 240000, HI = 290000;
+const tLive = document.getElementById('trend-live');
+const tVals = trend.map(r => r[1]);
+const HI = Math.ceil(Math.max(...tVals) / 10000) * 10000;
+const LO = Math.floor((Math.min(...tVals) - 5000) / 10000) * 10000;
+const TICKS = [];
+for (let v = HI; v > LO; v -= 20000) TICKS.push(v);
+let tCur = trend.length - 1;
 
 function drawTrend() {
   const W = trendEl.clientWidth, H = 236;
@@ -403,32 +439,36 @@ function drawTrend() {
   const y = v => T + (HI - v) / (HI - LO) * ph;
   const pts = trend.map(([, v], i) => [x(i), y(v)]);
   const line = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
-  const base = (T + ph).toFixed(1);
-  const area = `${line} L${pts.at(-1)[0].toFixed(1)} ${base} L${pts[0][0].toFixed(1)} ${base} Z`;
 
   let s = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true">`;
-  [250000, 270000, 290000].forEach(v => s += `<text x="0" y="${(y(v) + 4).toFixed(1)}">${k(v).replace('.0', '')}</text>`);
-  s += `<path d="${area}" fill="var(--data-2)"></path>`;
+  TICKS.forEach(v => s += `<text x="0" y="${(y(v) + 4).toFixed(1)}">${k(v).replace('.0', '')}</text>`);
   s += `<path d="${line}" fill="none" stroke="var(--data-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>`;
-  trend.forEach(([m], i) => s += `<text x="${x(i).toFixed(1)}" y="${H - 4}" text-anchor="middle">${m[0]}</text>`);
+  trend.forEach(([m], i) => s += `<text class="month" x="${x(i).toFixed(1)}" y="${H - 4}" text-anchor="middle">${m[0]}</text>`);
   s += `<circle id="trend-dot" r="4" fill="var(--data-1)"></circle>`;
-  trend.forEach(([m, v], i) => s += `<rect class="hit" tabindex="0" data-i="${i}" x="${(L + i * pw / trend.length).toFixed(1)}" y="0" width="${(pw / trend.length).toFixed(1)}" height="${H}" aria-label="${m}: ${k(v)}"></rect>`);
+  trend.forEach(([m, v], i) => s += `<rect class="hit" data-i="${i}" x="${(L + i * pw / trend.length).toFixed(1)}" y="0" width="${(pw / trend.length).toFixed(1)}" height="${H}"></rect>`);
   s += '</svg>';
   trendEl.innerHTML = s;
 
   const dot = trendEl.querySelector('#trend-dot');
+  const months = [...trendEl.querySelectorAll('text.month')];
   const show = i => {
+    months.forEach((t, j) => t.classList.toggle('is-on', j === i));
     dot.setAttribute('cx', pts[i][0]); dot.setAttribute('cy', pts[i][1]);
     tVal.textContent = k(trend[i][1]); tMonth.textContent = trend[i][0];
   };
-  trendEl.querySelectorAll('.hit').forEach(r => {
-    const i = +r.dataset.i;
-    r.addEventListener('mouseenter', () => show(i));
-    r.addEventListener('focus', () => show(i));
-  });
-  trendEl.querySelector('svg').addEventListener('mouseleave', () => show(trend.length - 1));
-  show(trend.length - 1);
+  trendEl.querySelectorAll('.hit').forEach(r => r.addEventListener('mouseenter', () => show(+r.dataset.i)));
+  trendEl.querySelector('svg').addEventListener('mouseleave', () => show(tCur));
+  trendEl.showMonth = show;
+  show(tCur);
 }
+trendEl.addEventListener('keydown', e => {
+  const next = stepIndex(e, tCur, trend.length);
+  if (next === null) return;
+  e.preventDefault();
+  tCur = next;
+  trendEl.showMonth(tCur);
+  tLive.textContent = `${trend[tCur][0]}: ${k(trend[tCur][1])}`;
+});
 drawTrend();
 new ResizeObserver(drawTrend).observe(trendEl);
 if (document.fonts) document.fonts.ready.then(drawTrend);
