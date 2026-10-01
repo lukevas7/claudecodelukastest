@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gearline Cycles: Showroom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&amp;family=Schibsted+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --oxblood-900:#240810;
+  --oxblood-800:#33101A;
+  --oxblood-700:#4A1824;
+  --oxblood-500:#7A2E3C;
+  --blush-100:#F7ECEA;
+  --blush-200:#EFDCD8;
+  --blush-300:#E3C6C0;
+  --bone:#F6EDEA;
+  --bone-dim:#D7BFC0;
+  --brass:#D8B36A;
+  --brass-hover:#E6C682;
+  --ink:#2A0C14;
+  --ink-soft:#6B3A44;
+  --stock-low:#9A3B12;
+  --stock-ok:#2F5D3A;
+  --serif:"Gloock", Georgia, serif;
+  --sans:"Schibsted Grotesk", system-ui, sans-serif;
+  --gutter:clamp(20px, 5.5vw, 80px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--blush-100);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+::selection{background:var(--brass);color:var(--oxblood-900)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+.deals :focus-visible{outline-color:var(--oxblood-500)}
+img,svg{display:block}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--oxblood-800);color:var(--bone);position:relative}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:28px var(--gutter);gap:24px}
+.brand{font-family:var(--serif);font-size:26px;letter-spacing:-0.01em;text-decoration:none;color:var(--bone)}
+.brand span{color:var(--brass)}
+.nav ul{display:flex;gap:36px;list-style:none;margin:0;padding:0;font-size:15px}
+.nav ul a{text-decoration:none;color:var(--bone-dim)}
+.nav ul a:hover{color:var(--bone)}
+.nav-cart{display:flex;align-items:center;gap:8px;text-decoration:none;font-size:15px;color:var(--bone);min-height:44px}
+
+.hero-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:0;min-height:560px}
+.hero-copy{padding:56px 56px 56px var(--gutter);display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(46px,5.4vw,84px);line-height:1;letter-spacing:-0.02em;margin:0;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--brass);display:block;margin-top:.12em}
+.lede{font-size:19px;line-height:1.55;color:var(--bone-dim);max-width:30ch;margin:32px 0 0}
+.ctas{display:flex;align-items:center;gap:32px;margin-top:44px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:12px;background:var(--brass);color:var(--oxblood-900);font-weight:600;font-size:17px;text-decoration:none;padding:18px 30px;border-radius:999px;transition:background .25s cubic-bezier(.2,.8,.2,1),transform .25s cubic-bezier(.2,.8,.2,1)}
+.btn-primary:hover{background:var(--brass-hover);transform:translateY(-1px)}
+.btn-link{font-size:17px;font-weight:500;color:var(--bone);text-decoration:underline;text-decoration-color:var(--oxblood-500);text-underline-offset:8px;text-decoration-thickness:2px;padding:12px 0;transition:text-decoration-color .2s}
+.btn-link:hover{text-decoration-color:var(--brass)}
+
+.hero-photo{position:relative;background:var(--oxblood-700);margin:0;display:flex;align-items:flex-end;overflow:hidden}
+.hero-photo::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 22px,rgba(246,237,234,.035) 22px 23px)}
+.ph-label{position:relative;display:flex;align-items:center;gap:14px;margin:32px;padding:14px 18px;border:1px solid rgba(246,237,234,.28);font-size:14px;color:var(--bone-dim);max-width:44ch;line-height:1.4}
+.hero-photo .bike-mark{position:absolute;inset:0;margin:auto;width:46%;height:auto;color:rgba(246,237,234,.16)}
+
+.trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(246,237,234,.16);padding:0 var(--gutter);list-style:none;margin:0}
+.trust li{display:flex;align-items:center;gap:14px;padding:26px 0;font-size:15px;color:var(--bone)}
+.trust li + li{padding-left:28px;border-left:1px solid rgba(246,237,234,.16)}
+.trust svg{flex:none;color:var(--brass)}
+.trust strong{font-weight:600}
+.trust .rating{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--brass);line-height:1}
+
+/* ---------- Deals ---------- */
+.deals{padding:104px var(--gutter) 120px}
+.deals-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:56px}
+.deals h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4.2vw,64px);line-height:1;letter-spacing:-0.02em;margin:0}
+.deals-head p{margin:14px 0 0;color:var(--ink-soft);font-size:17px}
+.view-all{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:16px;text-decoration:none;color:var(--ink);border-bottom:2px solid var(--oxblood-500);padding:10px 0 6px;white-space:nowrap}
+.view-all:hover{color:var(--oxblood-500)}
+
+.deal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 32px;list-style:none;margin:0;padding:0}
+.deal{display:flex;flex-direction:column}
+.plate{position:relative;aspect-ratio:4/5;background:var(--blush-200);display:flex;align-items:flex-end;overflow:hidden}
+.plate .bike-mark{position:absolute;left:12%;right:12%;top:30%;width:76%;height:auto;color:var(--blush-300)}
+.plate .ph-label{margin:16px;padding:10px 12px;border-color:var(--blush-300);color:var(--ink-soft);font-size:13px}
+.seal{position:absolute;top:16px;left:16px;width:68px;height:68px;border-radius:50%;background:var(--oxblood-800);color:var(--bone);display:grid;place-items:center;font-family:var(--sans);font-weight:700;font-size:18px}
+.deal-cat{margin:22px 0 4px;font-size:14px;color:var(--ink-soft)}
+.deal h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin:0}
+.price{display:flex;align-items:baseline;gap:12px;margin:16px 0 0}
+.price .now{font-family:var(--serif);font-size:34px;line-height:1;color:var(--oxblood-800)}
+.price s{font-size:16px;color:var(--ink-soft);font-variant-numeric:normal}
+.facts{list-style:none;margin:16px 0 0;padding:14px 0 0;border-top:1px solid var(--blush-300);display:grid;gap:6px;font-size:15px}
+.stock{display:flex;align-items:center;gap:8px;font-weight:600}
+.stock::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.stock.low{color:var(--stock-low)}
+.stock.ok{color:var(--stock-ok)}
+.add{margin-top:22px;min-height:50px;width:100%;border:1.5px solid var(--oxblood-800);background:transparent;color:var(--oxblood-800);border-radius:999px;font:600 16px var(--sans);display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:background .2s,color .2s}
+.add:hover{background:var(--oxblood-800);color:var(--bone)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1100px){
+  .deal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust li:nth-child(3){padding-left:0;border-left:0}
+  .trust li:nth-child(n+3){border-top:1px solid rgba(246,237,234,.16)}
+}
+@media (max-width:860px){
+  .nav ul{display:none}
+  .hero-grid{grid-template-columns:1fr;min-height:0}
+  .hero-copy{padding:36px var(--gutter) 40px}
+  .hero{display:flex;flex-direction:column}
+  .hero-grid{display:contents}
+  .hero-photo{order:3}
+  .trust{order:2}
+  .hero-photo{aspect-ratio:4/3}
+  .lede{font-size:17px}
+  .ctas{gap:20px;margin-top:32px}
+  .deals{padding:72px var(--gutter) 88px}
+  .deals-head{flex-direction:column;align-items:flex-start;margin-bottom:40px}
+}
+@media (max-width:560px){
+  .nav{padding:20px var(--gutter)}
+  .brand{font-size:22px}
+  .btn-primary{flex:1 1 100%;justify-content:center}
+  .trust{grid-template-columns:1fr}
+  .trust li,.trust li + li{padding:16px 0;border-left:0}
+  .trust li + li{border-top:1px solid rgba(246,237,234,.16)}
+  .deal-grid{grid-template-columns:1fr;gap:56px}
+  .ph-label{margin:16px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bike" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="27" r="11"/><circle cx="51" cy="27" r="11"/><path d="M13 27 23 11h20l8 16M23 11l9 16H13M32 27 43 11M20 6h7M43 11l-2-6h5"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 9h4l4 4v3h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol>
+  <symbol id="i-return" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7 4 12l5 5"/><path d="M4 12h11a5 5 0 0 1 0 10h-3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="1.8"/><path d="m4 18 5-5 4 4 3-3 4 4"/></symbol>
+</svg>
+
+<header class="hero">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#">Gearline <span>Cycles</span></a>
+    <ul>
+      <li><a href="#">Road</a></li>
+      <li><a href="#">Gravel</a></li>
+      <li><a href="#">City</a></li>
+      <li><a href="#">E-bikes</a></li>
+      <li><a href="#">Workshop</a></li>
+    </ul>
+    <a class="nav-cart" href="#"><svg width="22" height="22"><use href="#i-bag"/></svg>Basket</a>
+  </nav>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1>The right bike for every ride. <em>Ready in 48 hours.</em></h1>
+      <p class="lede">Expert-built bikes, free assembly and a 30-day test ride.</p>
+      <div class="ctas">
+        <a class="btn-primary" href="#">Shop bikes <svg width="20" height="20"><use href="#i-arrow"/></svg></a>
+        <a class="btn-link" href="#">Find my bike</a>
+      </div>
+    </div>
+    <figure class="hero-photo">
+      <svg class="bike-mark" viewBox="0 0 64 40" aria-hidden="true"><use href="#i-bike"/></svg>
+      <figcaption class="ph-label"><svg width="20" height="20" aria-hidden="true"><use href="#i-photo"/></svg>Hero photo: gravel bike against a workshop wall, three-quarter view, low warm light</figcaption>
+    </figure>
+  </div>
+
+  <ul class="trust" aria-label="Why buy from Gearline">
+    <li><svg width="26" height="26" aria-hidden="true"><use href="#i-truck"/></svg><span><strong>Free delivery</strong> over €500</span></li>
+    <li><svg width="26" height="26" aria-hidden="true"><use href="#i-return"/></svg><span><strong>30-day</strong> returns</span></li>
+    <li><svg width="26" height="26" aria-hidden="true"><use href="#i-shield"/></svg><span><strong>2-year</strong> warranty</span></li>
+    <li><span class="rating num">4.8/5</span><span>from 2,300 reviews</span></li>
+  </ul>
+</header>
+
+<main>
+<section class="deals" aria-labelledby="deals-title">
+  <div class="deals-head">
+    <div>
+      <h2 id="deals-title">Hot deals</h2>
+      <p>Four bikes, expert-built in our workshop and ready to ride.</p>
+    </div>
+    <a class="view-all" href="#">View all deals <svg width="18" height="18" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+
+  <ul class="deal-grid">
+    <li class="deal">
+      <figure class="plate" style="margin:0">
+        <span class="seal num" aria-label="17 percent off">−17%</span>
+        <svg class="bike-mark" viewBox="0 0 64 40" aria-hidden="true"><use href="#i-bike"/></svg>
+        <figcaption class="ph-label">Product photo: gravel bike, side view</figcaption>
+      </figure>
+      <p class="deal-cat">Gravel</p>
+      <h3>Trailblazer G2 Gravel</h3>
+      <p class="price num"><span class="now">€1,899</span><s aria-label="was €2,299">€2,299</s></p>
+      <ul class="facts">
+        <li>Sizes S to XL</li>
+        <li class="stock low">3 left in stock</li>
+      </ul>
+      <button class="add" type="button"><svg width="18" height="18" aria-hidden="true"><use href="#i-bag"/></svg>Add to cart</button>
+    </li>
+    <li class="deal">
+      <figure class="plate" style="margin:0">
+        <span class="seal num" aria-label="19 percent off">−19%</span>
+        <svg class="bike-mark" viewBox="0 0 64 40" aria-hidden="true"><use href="#i-bike"/></svg>
+        <figcaption class="ph-label">Product photo: city bike, side view</figcaption>
+      </figure>
+      <p class="deal-cat">City</p>
+      <h3>Urban Glide City</h3>
+      <p class="price num"><span class="now">€649</span><s aria-label="was €799">€799</s></p>
+      <ul class="facts">
+        <li>Sizes M to L</li>
+        <li class="stock ok">In stock</li>
+      </ul>
+      <button class="add" type="button"><svg width="18" height="18" aria-hidden="true"><use href="#i-bag"/></svg>Add to cart</button>
+    </li>
+    <li class="deal">
+      <figure class="plate" style="margin:0">
+        <span class="seal num" aria-label="17 percent off">−17%</span>
+        <svg class="bike-mark" viewBox="0 0 64 40" aria-hidden="true"><use href="#i-bike"/></svg>
+        <figcaption class="ph-label">Product photo: e-commuter bike, side view</figcaption>
+      </figure>
+      <p class="deal-cat">E-bike</p>
+      <h3>Volt E-Commute</h3>
+      <p class="price num"><span class="now">€2,499</span><s aria-label="was €2,999">€2,999</s></p>
+      <ul class="facts">
+        <li>120 km range</li>
+        <li class="stock low">5 left in stock</li>
+      </ul>
+      <button class="add" type="button"><svg width="18" height="18" aria-hidden="true"><use href="#i-bag"/></svg>Add to cart</button>
+    </li>
+    <li class="deal">
+      <figure class="plate" style="margin:0">
+        <span class="seal num" aria-label="13 percent off">−13%</span>
+        <svg class="bike-mark" viewBox="0 0 64 40" aria-hidden="true"><use href="#i-bike"/></svg>
+        <figcaption class="ph-label">Product photo: road bike, side view</figcaption>
+      </figure>
+      <p class="deal-cat">Road</p>
+      <h3>Aero R5 Road</h3>
+      <p class="price num"><span class="now">€2,799</span><s aria-label="was €3,199">€3,199</s></p>
+      <ul class="facts">
+        <li>Sizes S to XL</li>
+        <li class="stock ok">In stock</li>
+      </ul>
+      <button class="add" type="button"><svg width="18" height="18" aria-hidden="true"><use href="#i-bag"/></svg>Add to cart</button>
+    </li>
+  </ul>
+</section>
+</main>
+</body>
+</html>
