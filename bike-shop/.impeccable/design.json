@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-01T14:00:37+00:00",
+  "title": "Design System: Gearline Cycles (Direction B)",
+  "extensions": {
+    "colorMeta": {
+      "cobalt": {
+        "role": "primary",
+        "displayName": "Race Cobalt",
+        "canonical": "#1636D9",
+        "tonalRamp": [
+          "#071145",
+          "#0C1D74",
+          "#1129A7",
+          "#1636DA",
+          "#3D59EB",
+          "#7489F1",
+          "#ACB8F7",
+          "#E3E7FC"
+        ]
+      },
+      "cobalt-deep": {
+        "role": "primary",
+        "displayName": "Cobalt Deep",
+        "canonical": "#0E248F"
+      },
+      "cobalt-ink": {
+        "role": "primary",
+        "displayName": "Cobalt Ink",
+        "canonical": "#0A1A66"
+      },
+      "yellow": {
+        "role": "secondary",
+        "displayName": "Leader Yellow",
+        "canonical": "#FFE135",
+        "tonalRamp": [
+          "#4B4002",
+          "#7C6A03",
+          "#B39905",
+          "#EAC806",
+          "#FADB2E",
+          "#FBE66A",
+          "#FDF0A5",
+          "#FEFAE1"
+        ]
+      },
+      "yellow-hover": {
+        "role": "secondary",
+        "displayName": "Leader Yellow Hover",
+        "canonical": "#FFEB70"
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#FFFFFF"
+      },
+      "tarmac": {
+        "role": "neutral",
+        "displayName": "Tarmac",
+        "canonical": "#0D0F1A",
+        "tonalRamp": [
+          "#0D0F1A",
+          "#1C2030",
+          "#2E3347",
+          "#4A4F66",
+          "#6B7086",
+          "#9195A8",
+          "#BCBFCC",
+          "#E6E8EE"
+        ]
+      },
+      "tarmac-soft": {
+        "role": "neutral",
+        "displayName": "Tarmac Soft",
+        "canonical": "#4A4F66"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Start Line Grey",
+        "canonical": "#ECEEF5",
+        "tonalRamp": [
+          "#1B1E2A",
+          "#2F3445",
+          "#4A5068",
+          "#6C738D",
+          "#9097AF",
+          "#B6BBCD",
+          "#D3D7E6",
+          "#ECEEF5"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Tear Line",
+        "canonical": "#D3D7E6"
+      },
+      "stock-low": {
+        "role": "status",
+        "displayName": "Low Stock Red",
+        "canonical": "#B3261E",
+        "tonalRamp": [
+          "#420E0B",
+          "#6D1712",
+          "#9D211A",
+          "#CD2C22",
+          "#E05048",
+          "#E9827C",
+          "#F2B4B0",
+          "#FBE6E5"
+        ]
+      },
+      "stock-ok": {
+        "role": "status",
+        "displayName": "In Stock Green",
+        "canonical": "#11703F",
+        "tonalRamp": [
+          "#0A4225",
+          "#116F3E",
+          "#189F5A",
+          "#20D075",
+          "#45E391",
+          "#7AEBB1",
+          "#AFF3D0",
+          "#E4FBEF"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only. 900 italic, uppercase, 62% width."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles such as Hot deals, in Race Cobalt. Italic, uppercase."
+      },
+      "discount": {
+        "displayName": "Bib Number",
+        "purpose": "The discount on each race bib; the largest figure on the card."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "Current price, always Race Cobalt, tabular figures."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Product names on bibs. Uppercase, 75% width."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Supporting line under the hero headline, max 30ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text and spec lines."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Nav, cart and section links. Uppercase, tracked."
+      },
+      "label-small": {
+        "displayName": "Label Small",
+        "purpose": "Category on each bib, in Race Cobalt."
+      }
+    },
+    "shadows": [
+      {
+        "name": "bib-rest",
+        "value": "0 1px 2px rgba(13,15,26,.08), 0 10px 24px -14px rgba(13,15,26,.25)",
+        "purpose": "Every deal bib at rest."
+      },
+      {
+        "name": "bib-lift",
+        "value": "0 2px 4px rgba(13,15,26,.08), 0 20px 34px -16px rgba(13,15,26,.35)",
+        "purpose": "Bib hover, with a 3px rise and -0.4deg turn."
+      },
+      {
+        "name": "pin-hole",
+        "value": "inset 0 1px 2px rgba(13,15,26,.25)",
+        "purpose": "The four punched holes on each bib."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-lean",
+        "value": "cubic-bezier(.2,.8,.2,1)",
+        "purpose": "Bib lift and primary button slide, 250ms."
+      },
+      {
+        "name": "duration-color",
+        "value": "200ms",
+        "purpose": "Colour and border changes on buttons and links."
+      },
+      {
+        "name": "button-slide",
+        "value": "translateX(3px)",
+        "purpose": "Primary button hover, keeping its -8deg skew."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "two-up",
+        "value": "1180px"
+      },
+      {
+        "name": "single-column-hero",
+        "value": "900px"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one hero action, Shop bikes. Slanted, yellow, heavy.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><span>Shop bikes <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:18px 34px;background:var(--yellow,#FFE135);color:var(--tarmac,#0D0F1A);text-decoration:none;font-family:\"Archivo\",\"Arial Narrow\",sans-serif;font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:22px;letter-spacing:.02em;transform:skewX(-8deg);transition:background .2s,transform .25s cubic-bezier(.2,.8,.2,1)}.ds-btn-primary>span{display:inline-flex;align-items:center;gap:12px;transform:skewX(8deg)}.ds-btn-primary:hover{background:var(--yellow-hover,#FFEB70);transform:skewX(-8deg) translateX(3px)}.ds-btn-primary:focus-visible{outline:3px solid var(--tarmac,#0D0F1A);outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Find my bike. Outlined, slanted, for use on Race Cobalt only.",
+      "html": "<div class=\"ds-on-cobalt\"><a class=\"ds-btn-secondary\" href=\"#\"><span><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 1v4M12 19v4M1 12h4M19 12h4\"/></svg>Find my bike</span></a></div>",
+      "css": ".ds-on-cobalt{background:var(--cobalt,#1636D9);padding:24px;display:inline-block}.ds-btn-secondary{display:inline-flex;align-items:center;min-height:60px;padding:16px 20px;color:#FFFFFF;text-decoration:none;font-family:\"Archivo\",\"Arial Narrow\",sans-serif;font-weight:700;font-size:17px;border:2px solid rgba(255,255,255,.5);transform:skewX(-8deg);transition:border-color .2s}.ds-btn-secondary>span{display:inline-flex;align-items:center;gap:10px;transform:skewX(8deg)}.ds-btn-secondary:hover{border-color:#FFFFFF}.ds-btn-secondary:focus-visible{outline:3px solid var(--yellow,#FFE135);outline-offset:3px}"
+    },
+    {
+      "name": "Add to Cart Button",
+      "kind": "button",
+      "refersTo": "button-cart",
+      "description": "Full-width card action. Tarmac at rest, yellow on hover.",
+      "html": "<button class=\"ds-btn-cart\" type=\"button\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 4h2l2.4 11h10.8L21 8H6.3\"/><circle cx=\"9\" cy=\"19.5\" r=\"1.4\"/><circle cx=\"17\" cy=\"19.5\" r=\"1.4\"/></svg>Add to cart</button>",
+      "css": ".ds-btn-cart{display:flex;align-items:center;justify-content:center;gap:10px;width:280px;min-height:52px;border:0;border-radius:4px;background:var(--tarmac,#0D0F1A);color:#FFFFFF;font-family:\"Archivo\",\"Arial Narrow\",sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:background .2s,color .2s}.ds-btn-cart:hover{background:var(--yellow,#FFE135);color:var(--tarmac,#0D0F1A)}.ds-btn-cart:focus-visible{outline:3px solid var(--cobalt,#1636D9);outline-offset:3px}"
+    },
+    {
+      "name": "Race Bib",
+      "kind": "card",
+      "refersTo": "deal-bib",
+      "description": "Signature deal card: pinned bib with the discount as the number, fixed field order.",
+      "html": "<article class=\"ds-bib\"><span class=\"ds-pin ds-tl\"></span><span class=\"ds-pin ds-tr\"></span><span class=\"ds-pin ds-bl\"></span><span class=\"ds-pin ds-br\"></span><div class=\"ds-bib-top\"><span class=\"ds-bib-cat\">Gravel</span><span class=\"ds-bib-off\">−17%</span></div><div class=\"ds-plate\"><span>Product photo: gravel bike, side view</span></div><h3 class=\"ds-bib-name\">Trailblazer G2 Gravel</h3><p class=\"ds-price\"><span class=\"ds-now\">€1,899</span><s>€2,299</s></p><p class=\"ds-meta\"><span>Sizes S to XL</span><span class=\"ds-stock ds-low\">3 left in stock</span></p><button class=\"ds-bib-add\" type=\"button\">Add to cart</button></article>",
+      "css": ".ds-bib{position:relative;width:310px;background:#FFFFFF;border-radius:10px;padding:16px 16px 30px;display:flex;flex-direction:column;color:var(--tarmac,#0D0F1A);font-family:\"Archivo\",\"Arial Narrow\",sans-serif;box-shadow:0 1px 2px rgba(13,15,26,.08),0 10px 24px -14px rgba(13,15,26,.25);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}.ds-bib:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 2px 4px rgba(13,15,26,.08),0 20px 34px -16px rgba(13,15,26,.35)}.ds-pin{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--paper,#ECEEF5);box-shadow:inset 0 1px 2px rgba(13,15,26,.25)}.ds-tl{top:10px;left:10px}.ds-tr{top:10px;right:10px}.ds-bl{bottom:10px;left:10px}.ds-br{bottom:10px;right:10px}.ds-bib-top{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 14px 0}.ds-bib-cat{font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--cobalt,#1636D9);padding-top:6px}.ds-bib-off{font-stretch:62%;font-weight:900;font-size:58px;line-height:.82;font-variant-numeric:tabular-nums lining-nums}.ds-plate{margin-top:12px;aspect-ratio:3/2;background:var(--paper,#ECEEF5);border-radius:4px;display:flex;align-items:flex-end}.ds-plate span{margin:10px;padding:7px 10px;background:#FFFFFF;color:var(--tarmac-soft,#4A4F66);font-size:12.5px}.ds-bib-name{margin:16px 0 0;font-stretch:75%;font-weight:800;font-size:26px;line-height:1;text-transform:uppercase}.ds-price{display:flex;align-items:baseline;gap:10px;margin:10px 0 0}.ds-now{font-stretch:62%;font-weight:900;font-size:42px;line-height:1;color:var(--cobalt,#1636D9);font-variant-numeric:tabular-nums lining-nums}.ds-price s{font-size:16px;font-weight:600;color:var(--tarmac-soft,#4A4F66)}.ds-meta{display:flex;justify-content:space-between;gap:12px;margin:14px 0 0;padding-top:12px;border-top:2px dashed var(--line,#D3D7E6);font-size:14px;font-weight:600}.ds-stock{display:inline-flex;align-items:center;gap:6px;font-weight:800}.ds-stock::before{content:\"\";width:8px;height:8px;border-radius:50%;background:currentColor}.ds-low{color:var(--stock-low,#B3261E)}.ds-bib-add{margin-top:16px;min-height:52px;border:0;border-radius:4px;background:var(--tarmac,#0D0F1A);color:#FFFFFF;font:800 16px \"Archivo\",sans-serif;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}.ds-bib-add:hover{background:var(--yellow,#FFE135);color:var(--tarmac,#0D0F1A)}"
+    },
+    {
+      "name": "Trust Strip",
+      "kind": "custom",
+      "refersTo": "trust-strip",
+      "description": "Full-width yellow band of the four trust facts, directly under the hero.",
+      "html": "<ul class=\"ds-trust\"><li>Free delivery over €500</li><li>30-day returns</li><li>2-year warranty</li><li><span class=\"ds-trust-big\">4.8/5</span>2,300 reviews</li></ul>",
+      "css": ".ds-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;margin:0;padding:0 24px;background:var(--yellow,#FFE135);color:var(--tarmac,#0D0F1A);font-family:\"Archivo\",\"Arial Narrow\",sans-serif;}.ds-trust li{display:flex;align-items:center;gap:12px;padding:20px 0;font-weight:700;font-size:16px}.ds-trust li+li{padding-left:24px}.ds-trust-big{font-stretch:62%;font-weight:900;font-size:30px;line-height:1}"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Cobalt bar with the yellow-block logo, uppercase links and cart.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\"><b>Gearline</b>Cycles</a><ul><li><a href=\"#\">Road</a></li><li><a href=\"#\">Gravel</a></li><li><a href=\"#\">City</a></li><li><a href=\"#\">E-bikes</a></li></ul><a class=\"ds-cart\" href=\"#\">Cart</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 24px;background:var(--cobalt,#1636D9);color:#FFFFFF;font-family:\"Archivo\",\"Arial Narrow\",sans-serif;}.ds-brand{display:flex;align-items:center;gap:10px;color:#FFFFFF;text-decoration:none;font-stretch:62%;font-weight:900;font-style:italic;font-size:30px;text-transform:uppercase;line-height:1}.ds-brand b{background:var(--yellow,#FFE135);color:var(--tarmac,#0D0F1A);padding:4px 8px 2px}.ds-nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}.ds-nav ul a,.ds-cart{color:#FFFFFF;text-decoration:none;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.04em;opacity:.86}.ds-nav ul a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}.ds-nav a:focus-visible{outline:3px solid var(--yellow,#FFE135);outline-offset:3px}"
+    },
+    {
+      "name": "View All Link",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Section-level link with a yellow underline.",
+      "html": "<a class=\"ds-view-all\" href=\"#\">View all deals →</a>",
+      "css": ".ds-view-all{display:inline-flex;align-items:center;gap:10px;padding:12px 0;border-bottom:3px solid var(--yellow,#FFE135);color:var(--tarmac,#0D0F1A);text-decoration:none;font-family:\"Archivo\",\"Arial Narrow\",sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.04em}.ds-view-all:hover{color:var(--cobalt,#1636D9)}.ds-view-all:focus-visible{outline:3px solid var(--cobalt,#1636D9);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Start List",
+    "overview": "The page reads like the printed programme handed out at an amateur race: entries in heavy condensed type, numbers big enough to read from the barrier, and two team colours that never share the job. Cobalt owns the top of the page and yellow carries the facts that close a sale. Below the hero, the deals sit on a cool grey ground as a row of race bibs, each pinned on at four corners, each leading with its number. Here the number is the discount.\n\nThe energy is loud but disciplined. Every heavy element sits on a strict grid with one gutter, every card holds the same fields in the same order, and the trust facts run as one straight line rather than a cloud of badges. The italic slant is the only motion in the static layout, and it always leans forward. Type does the shouting; colour and alignment keep it readable.\n\nThe source of this system is `bike-shop/hero-b.html`, a hero and Hot deals section built desktop first at 1440px that collapses to a single column at 390px. All content is fictional demo material.",
+    "keyCharacteristics": [
+      "Two fields of colour at page scale: a cobalt hero and a yellow trust strip, with white bibs on paper grey below.",
+      "One family, Archivo, used across its width axis: 62% for display and numerals, 75% for titles and controls, 100% for running text.",
+      "Display type is uppercase, italic and weight 900; running text is never uppercase.",
+      "Numerals are tabular and lining wherever a price or discount appears.",
+      "Deal cards are race bibs: four pin holes, a dashed tear line, the discount as the bib number."
+    ],
+    "rules": [
+      {
+        "name": "The Two Teams Rule",
+        "body": "Cobalt and yellow each own whole regions; they do not take turns on small elements. Yellow appears on cobalt or as its own field, never as a thin accent on paper grey, except the 3px underline on \"View all deals\".",
+        "section": "colors"
+      },
+      {
+        "name": "The Price Is Cobalt Rule",
+        "body": "The current price is always Race Cobalt; nothing else at that size and weight uses the colour. The old price is always Tarmac Soft, struck through, and at least 2.5 times smaller.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lean Forward Rule",
+        "body": "Italic is reserved for display and headline sizes and the logo. Below 26px, type stands upright.",
+        "section": "typography"
+      },
+      {
+        "name": "The Narrow Numbers Rule",
+        "body": "Prices, discounts and the 4.8/5 rating are set at 62% width with tabular lining figures, so a column of prices lines up and a discount reads at a glance. Struck old prices drop the tabular setting so the comma does not float.",
+        "section": "typography"
+      },
+      {
+        "name": "The Only Bibs Lift Rule",
+        "body": "Shadows belong to the bibs. Fields, strips, buttons and photos stay flat; a button shows hover by colour or a short slide, not by elevation.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the hero to one primary action in Leader Yellow and one outlined secondary.",
+      "Do set every price and discount in the narrow 900 weight with tabular figures, current price in Race Cobalt.",
+      "Do keep bib fields in the fixed order: category and discount, plate, name, price, tear line, spec and stock, button.",
+      "Do keep the trust strip directly under the hero at every width, ahead of the photo on phones.",
+      "Do pair every stock colour with a dot and words.",
+      "Do align every row to the single page gutter (`gutter`)."
+    ],
+    "donts": [
+      "Don't use yellow as small accent text on Start Line Grey or white; it fails contrast and breaks the Two Teams Rule.",
+      "Don't set running text or anything under 26px in italic or uppercase, except labels.",
+      "Don't add shadows to fields, strips or buttons; only bibs lift.",
+      "Don't round the hero buttons or remove their slant.",
+      "Don't add countdown timers or other fake urgency; stock counts are the only scarcity signal and must be true.",
+      "Don't use emoji, gradient blobs, glows or glass effects."
+    ]
+  }
+}
