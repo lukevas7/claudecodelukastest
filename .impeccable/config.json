@@ -20,6 +20,33 @@
         ],
         "createdAt": "2026-10-02T05:37:50.874Z",
         "reason": "Claude verified: .trust is inset by padding var(--gutter) = clamp(18px,4.5vw,64px); the static scan cannot resolve clamp() and reports 0. With a literal 64px the finding disappears."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "gloock",
+        "files": [
+          "bike-shop/hero-a.html"
+        ],
+        "createdAt": "2026-10-02T05:38:44.719Z",
+        "reason": "User's brief asked for three directions with different typography; DESIGN.md documents Direction B only, so A's fonts are its own by design"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "schibsted grotesk",
+        "files": [
+          "bike-shop/hero-a.html"
+        ],
+        "createdAt": "2026-10-02T05:38:44.749Z",
+        "reason": "User's brief asked for three directions with different typography; DESIGN.md documents Direction B only, so A's fonts are its own by design"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "onest",
+        "files": [
+          "bike-shop/hero-c.html"
+        ],
+        "createdAt": "2026-10-02T05:38:44.763Z",
+        "reason": "User's brief asked for three directions with different typography; DESIGN.md documents Direction B only, so C's font is its own by design"
       }
     ]
   }
