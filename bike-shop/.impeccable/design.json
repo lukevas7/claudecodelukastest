@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-01T14:00:37+00:00",
+  "generatedAt": "2026-10-02T05:38:09+00:00",
   "title": "Design System: Gearline Cycles (Direction B)",
   "extensions": {
     "colorMeta": {
@@ -128,7 +128,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Hero headline only. 900 italic, uppercase, 62% width."
+        "purpose": "Hero headline only. 900 italic, uppercase, 62% width. \"48 hours\" never breaks across lines."
       },
       "headline": {
         "displayName": "Headline",
@@ -305,6 +305,11 @@
         "name": "The Only Bibs Lift Rule",
         "body": "Shadows belong to the bibs. Fields, strips, buttons and photos stay flat; a button shows hover by colour or a short slide, not by elevation.",
         "section": "elevation"
+      },
+      {
+        "name": "The One Column Pitch Rule",
+        "body": "Headline, lede and primary button live in one column, in that order, with nothing between them. Images support from the side or below; they never sit between the promise and the action.",
+        "section": "layout"
       }
     ],
     "dos": [

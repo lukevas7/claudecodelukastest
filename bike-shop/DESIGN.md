@@ -17,7 +17,7 @@ colors:
 typography:
   display:
     fontFamily: "Archivo, Arial Narrow, sans-serif"
-    fontSize: "clamp(60px, 8.6vw, 132px)"
+    fontSize: "clamp(60px, 8.2vw, 124px)"
     fontWeight: 900
     lineHeight: 0.86
     letterSpacing: "-0.01em"
@@ -191,7 +191,7 @@ Two saturated team colours on a cool, near-neutral ground, with a near-black tha
 **Character:** One variable family stretched across its width axis, like the different weights of type on a race programme: compressed and heavy for the names and numbers, normal width for the sentences that explain them.
 
 ### Hierarchy
-- **Display** (900 italic, uppercase, `display` size, line height 0.86): the hero headline only. The second sentence is set in Leader Yellow on its own line.
+- **Display** (900 italic, uppercase, `display` size, line height 0.86): the hero headline only. The second sentence is set in Leader Yellow on its own line, and "48 hours" never breaks across lines.
 - **Headline** (900 italic, uppercase, `headline` size, line height 0.9): section titles such as "Hot deals", in Race Cobalt.
 - **Discount** (900, 58px, 62% width, tabular): the bib number. The largest figure on each card.
 - **Price** (900, 42px, 62% width, tabular): the current price, in Race Cobalt.
@@ -210,12 +210,15 @@ Two saturated team colours on a cool, near-neutral ground, with a near-black tha
 
 A single page gutter (`gutter`, 18px at phone width up to 64px at 1440px) frames every row: nav, hero, photo, trust strip and deals all start on the same left edge.
 
-- **Hero:** a two-column grid at 7fr and 5fr, aligned to the bottom. The headline fills the left column. The right column stacks the photo (250px tall), the lede and the two buttons. The trust strip runs the full width directly under the hero, as four equal columns.
+- **Hero:** a two-column grid at 7fr and 5fr with a 56px gap. The left column holds the whole message as one vertically centred group: headline, then the lede 28px below, then the two buttons 32px below that. The right column is the photo, stretched to the full height of the message (at least 360px). The trust strip runs the full width directly under the hero, as four equal columns.
 - **Deals:** a header row with the headline left and "View all deals" right, aligned to the baseline, then a four-column grid with a 24px gap. Section padding is 80px above and 104px below.
 - **Rhythm:** 6, 12, 16, 24 and 40px steps inside components; 80 and 104px between sections. More space above a heading than below it.
 - **Under 1180px:** deals and trust strip drop to two columns.
 - **Under 900px:** nav links hide (logo and cart stay). The hero becomes one column in this order: headline, lede, buttons, trust strip, then the photo, so the trust facts stay above the fold on a phone. The photo drops to 200px tall.
 - **Under 560px:** buttons stack full width, the trust strip becomes one column with hairline dividers, and deals become one column.
+
+### Named Rules
+**The One Column Pitch Rule.** Headline, lede and primary button live in one column, in that order, with nothing between them. Images support from the side or below; they never sit between the promise and the action.
 
 ## Elevation & Depth
 

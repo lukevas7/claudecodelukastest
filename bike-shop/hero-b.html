@@ -45,12 +45,13 @@ img,svg{display:block}
 .nav ul a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
 .nav-cart{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;text-transform:uppercase;font-size:15px;letter-spacing:.04em;min-height:44px}
 
-.hero-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end;gap:48px;padding:28px var(--gutter) 48px}
-.hero h1{margin:0;font-stretch:62%;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(60px,8.6vw,132px);line-height:.86;letter-spacing:-0.01em}
+.hero-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:stretch;gap:56px;padding:28px var(--gutter) 56px}
+.hero-copy{display:flex;flex-direction:column;justify-content:center}
+.hero h1{margin:0;font-stretch:62%;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(60px,8.2vw,124px);line-height:.86;letter-spacing:-0.01em}
 .hero h1 .y{color:var(--yellow);display:block}
-.hero-side{padding-bottom:6px}
-.lede{font-size:20px;line-height:1.45;margin:0;max-width:30ch;font-weight:500}
-.ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
+.nb{white-space:nowrap}
+.lede{font-size:20px;line-height:1.45;margin:28px 0 0;max-width:30ch;font-weight:500}
+.ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:32px}
 .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--yellow);color:var(--tarmac);text-decoration:none;font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:22px;letter-spacing:.02em;padding:18px 34px;min-height:60px;transform:skewX(-8deg);transition:background .2s,transform .25s cubic-bezier(.2,.8,.2,1)}
 .btn-primary > span{transform:skewX(8deg);display:inline-flex;align-items:center;gap:12px}
 .btn-primary:hover{background:var(--yellow-hover);transform:skewX(-8deg) translateX(3px)}
@@ -58,7 +59,7 @@ img,svg{display:block}
 .btn-secondary > span{transform:skewX(8deg);display:inline-flex;align-items:center;gap:10px}
 .btn-secondary:hover{border-color:var(--white)}
 
-.hero-photo{position:relative;margin:0 0 32px;height:250px;background:var(--cobalt-deep);overflow:hidden;display:flex;align-items:flex-end}
+.hero-photo{position:relative;margin:0;min-height:360px;background:var(--cobalt-deep);overflow:hidden;display:flex;align-items:flex-end}
 .hero-photo::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-60deg,transparent 0 14px,rgba(255,255,255,.05) 14px 16px)}
 .hero-photo .bike-mark{position:absolute;right:6%;bottom:-8%;width:70%;height:auto;color:rgba(255,255,255,.18)}
 .ph-label{position:relative;display:inline-flex;align-items:center;gap:12px;margin:22px;padding:10px 14px;background:var(--cobalt-ink);color:#E4E8FF;font-size:14px;font-weight:500;line-height:1.35;max-width:52ch}
@@ -106,15 +107,13 @@ img,svg{display:block}
 }
 @media (max-width:900px){
   .nav ul{display:none}
-  .hero-body{grid-template-columns:1fr;gap:24px;padding-top:24px}
-  .lede{font-size:18px}
   .hero{display:flex;flex-direction:column}
-  .hero-body,.hero-side{display:contents}
-  .hero h1{order:1;padding:20px var(--gutter) 0}
-  .lede{order:2;padding:20px var(--gutter) 0}
-  .ctas{order:3;padding:0 var(--gutter) 32px;margin-top:24px}
-  .trust{order:4}
-  .hero-photo{order:5;margin:0;height:200px}
+  .hero-body{display:contents}
+  .hero-copy{order:1;padding:20px var(--gutter) 32px}
+  .lede{font-size:18px;margin-top:20px}
+  .ctas{margin-top:24px}
+  .trust{order:2}
+  .hero-photo{order:3;min-height:0;height:200px}
   .deals{padding:60px var(--gutter) 80px}
   .deals-head{flex-direction:column;align-items:flex-start;gap:8px}
 }
@@ -157,18 +156,18 @@ img,svg{display:block}
   </nav>
 
   <div class="hero-body">
-    <h1>The right bike for every ride. <span class="y">Ready in 48 hours.</span></h1>
-    <div class="hero-side">
-  <figure class="hero-photo">
-      <svg class="bike-mark" viewBox="0 0 64 40" aria-hidden="true"><use href="#i-bike"/></svg>
-      <figcaption class="ph-label"><svg width="20" height="20" aria-hidden="true"><use href="#i-photo"/></svg>Hero photo: rider sprinting on a road bike, panning shot</figcaption>
-    </figure>
+    <div class="hero-copy">
+      <h1>The right bike for every ride. <span class="y">Ready in <span class="nb">48 hours.</span></span></h1>
       <p class="lede">Expert-built bikes, free assembly and a 30-day test ride.</p>
       <div class="ctas">
         <a class="btn-primary" href="#"><span>Shop bikes <svg width="22" height="22" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
         <a class="btn-secondary" href="#"><span><svg width="20" height="20" aria-hidden="true"><use href="#i-target"/></svg>Find my bike</span></a>
       </div>
     </div>
+    <figure class="hero-photo">
+      <svg class="bike-mark" viewBox="0 0 64 40" aria-hidden="true"><use href="#i-bike"/></svg>
+      <figcaption class="ph-label"><svg width="20" height="20" aria-hidden="true"><use href="#i-photo"/></svg>Hero photo: rider sprinting on a road bike, panning shot</figcaption>
+    </figure>
   </div>
 
 

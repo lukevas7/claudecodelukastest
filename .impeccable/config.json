@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-09-30T13:49:48.123Z",
         "reason": "brief pins the D · Ring widget's exact type sizes (34/17/14/12px); card titles stay 14px by the user's instruction"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "bike-shop/hero-b.html"
+        ],
+        "createdAt": "2026-10-02T05:37:50.874Z",
+        "reason": "Claude verified: .trust is inset by padding var(--gutter) = clamp(18px,4.5vw,64px); the static scan cannot resolve clamp() and reports 0. With a literal 64px the finding disappears."
       }
     ]
   }
