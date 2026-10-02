@@ -346,23 +346,24 @@ body{margin:0;background:var(--paper);color:var(--tarmac);font-family:var(--font
 a{color:inherit}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 .deals :focus-visible{outline-color:var(--cobalt)}
+.trust :focus-visible{outline-color:var(--tarmac)}
 img,svg{display:block}
 .num{font-variant-numeric:tabular-nums lining-nums}
-.cond{font-stretch:62%;font-weight:900;text-transform:uppercase}
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* ---------- Hero ---------- */
 .hero{background:var(--cobalt);color:var(--white);overflow:hidden}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px var(--gutter)}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-stretch:62%;font-weight:900;font-style:italic;font-size:30px;letter-spacing:.01em;text-transform:uppercase;line-height:1}
+.brand{display:flex;align-items:center;min-height:44px;gap:10px;text-decoration:none;font-stretch:62%;font-weight:900;font-style:italic;font-size:30px;letter-spacing:.01em;text-transform:uppercase;line-height:1}
 .brand b{background:var(--yellow);color:var(--tarmac);padding:4px 8px 2px;font-weight:900}
 .nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.04em}
-.nav ul a{text-decoration:none;opacity:.86}
+.nav ul a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;text-decoration:none;opacity:.86}
 .nav ul a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
-.nav-cart{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;text-transform:uppercase;font-size:15px;letter-spacing:.04em;min-height:44px}
+.nav-cart{position:relative;display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;text-transform:uppercase;font-size:15px;letter-spacing:.04em;min-height:44px}
 
 .hero-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:stretch;gap:56px;padding:28px var(--gutter) 56px}
 .hero-copy{display:flex;flex-direction:column;justify-content:center}
-.hero h1{margin:0;font-stretch:62%;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(60px,8.2vw,124px);line-height:.86;letter-spacing:-0.01em}
+.hero h1{margin:0;font-stretch:62%;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(52px,8.2vw,124px);line-height:.86;letter-spacing:-0.01em}
 .hero h1 .y{color:var(--yellow);display:block}
 .nb{white-space:nowrap}
 .lede{font-size:20px;line-height:1.45;margin:28px 0 0;max-width:30ch;font-weight:500}
@@ -375,13 +376,15 @@ img,svg{display:block}
 .btn-secondary:hover{border-color:var(--white)}
 
 .hero-photo{position:relative;margin:0;min-height:360px;background:var(--cobalt-deep);overflow:hidden;display:flex;align-items:flex-end}
-.hero-photo .bike-mark{position:absolute;right:6%;bottom:-8%;width:70%;height:auto;color:rgba(255,255,255,.18)}
+.hero-photo .bike-mark{position:absolute;right:6%;bottom:-8%;width:70%;height:auto;color:rgba(255,255,255,.12)}
 .ph-label{position:relative;display:inline-flex;align-items:center;gap:12px;margin:22px;padding:10px 14px;background:var(--cobalt-ink);color:#E4E8FF;font-size:14px;font-weight:500;line-height:1.35;max-width:52ch}
 
 .trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;margin:0;padding:0 var(--gutter);background:var(--yellow);color:var(--tarmac)}
-.trust li{display:flex;align-items:center;gap:12px;padding:20px 0;font-weight:700;font-size:16px}
+.trust li{display:flex;align-items:center;gap:12px;padding:13px 0;font-weight:700;font-size:16px}
 .trust li + li{padding-left:24px}
 .trust svg{flex:none}
+.rating{display:flex;align-items:center;gap:12px;text-decoration:none;min-height:44px}
+.rating:hover span:last-child{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
 .trust .big{font-stretch:62%;font-weight:900;font-size:30px;line-height:1;text-transform:uppercase}
 
 /* ---------- Deals ---------- */
@@ -392,26 +395,63 @@ img,svg{display:block}
 .view-all:hover{color:var(--cobalt)}
 
 .deal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;list-style:none;margin:0;padding:0}
-.bib{position:relative;background:var(--white);border-radius:10px;padding:16px 16px 30px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(13,15,26,.08),0 10px 24px -14px rgba(13,15,26,.25);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
-.bib:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 2px 4px rgba(13,15,26,.08),0 20px 34px -16px rgba(13,15,26,.35)}
-.pin{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--paper);box-shadow:inset 0 1px 2px rgba(13,15,26,.25)}
-.pin.tl{top:10px;left:10px}.pin.tr{top:10px;right:10px}.pin.bl{bottom:10px;left:10px}.pin.br{bottom:10px;right:10px}
-.bib-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:6px 14px 0}
-.bib-cat{font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:13px;color:var(--cobalt);padding-top:6px}
-.bib-off{font-stretch:62%;font-weight:900;font-size:58px;line-height:.82;color:var(--tarmac);letter-spacing:-0.01em}
-.plate{position:relative;margin:12px 0 0;aspect-ratio:3/2;background:var(--paper);display:flex;align-items:flex-end;overflow:hidden;border-radius:4px}
+.bib{position:relative;background:var(--white);border-radius:10px;padding:16px 16px 20px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(13,15,26,.08),0 10px 24px -14px rgba(13,15,26,.25);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.bib:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(13,15,26,.08),0 20px 34px -16px rgba(13,15,26,.35)}
+.bib-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:16px}
+.bib-cat{font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:14px;color:var(--cobalt)}
+.bib-off{display:inline-block;background:var(--tarmac);color:var(--yellow);font-stretch:62%;font-weight:900;font-size:24px;line-height:1;padding:6px 10px 4px;transform:skewX(-8deg)}
+.plate{position:relative;margin:0;aspect-ratio:3/2;background:var(--paper);display:flex;align-items:flex-end;overflow:hidden;border-radius:4px}
+.plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--paper)}
 .plate .bike-mark{position:absolute;left:14%;top:14%;width:72%;height:auto;color:var(--line)}
-.plate .ph-label{margin:10px;padding:7px 10px;background:var(--white);color:var(--tarmac-soft);font-size:12.5px}
-.bib h3{margin:16px 0 0;font-stretch:75%;font-weight:800;text-transform:uppercase;font-size:26px;line-height:1}
-.price{display:flex;align-items:baseline;gap:10px;margin:10px 0 0}
-.price .now{font-stretch:62%;font-weight:900;font-size:42px;line-height:1;color:var(--cobalt)}
-.price s{font-size:16px;font-weight:600;color:var(--tarmac-soft);font-variant-numeric:normal}
-.meta{display:flex;justify-content:space-between;gap:12px;margin:14px 0 0;padding:12px 0 0;border-top:2px dashed var(--line);font-size:14px;font-weight:600}
+.plate .ph-label{margin:10px;padding:7px 10px;background:var(--white);color:var(--tarmac-soft);font-size:13px;line-height:1.3}
+.bib h3{margin:8px 0 0;font-stretch:75%;font-weight:800;text-transform:uppercase;font-size:24px;line-height:1.05;min-height:2.1em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;hyphens:auto}
+.price{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:12px 0 0}
+.price .now{font-stretch:62%;font-weight:900;font-size:58px;line-height:.9;letter-spacing:-0.01em;color:var(--cobalt)}
+.price .was{display:inline-flex;align-items:baseline;gap:10px;font-size:18px;font-weight:600;color:var(--tarmac-soft)}
+.price .save{font-size:15px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--tarmac)}
+.sizes,.spec{margin:14px 0 0;padding:12px 0 0;border:0;border-top:1px dashed var(--line);min-width:0}
+.sizes legend{float:left;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tarmac-soft);padding:0;margin-right:12px;line-height:44px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{position:relative;display:inline-grid}
+.chip input{position:absolute;inset:0;margin:0;opacity:0;cursor:pointer}
+.chip span{display:grid;place-items:center;min-width:44px;height:44px;padding:0 10px;border:2px solid var(--line);border-radius:4px;font-weight:800;font-size:15px;color:var(--tarmac);background:var(--white)}
+.chip input:hover + span{border-color:var(--tarmac)}
+.chip input:checked + span{background:var(--cobalt);border-color:var(--cobalt);color:var(--white)}
+.chip input:focus-visible + span{outline:3px solid var(--cobalt);outline-offset:2px}
+.chip.is-out span{background:var(--paper);border-color:var(--paper);color:var(--tarmac-soft);text-decoration:line-through}
+.chip.is-out input{cursor:not-allowed}
+.spec{font-size:15px;font-weight:600;line-height:44px}
+.spec-k{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--tarmac-soft);margin-right:8px}
+.bib > .stock{margin:12px 0 20px;font-size:15px}
+.size-msg{margin:-10px 0 14px;font-size:14px;font-weight:700;color:var(--low)}
+.size-msg:empty{display:none}
+.bib.needs-size .chip:not(.is-out) span{border-color:var(--low)}
+.bib.is-soldout .price .now{color:var(--tarmac-soft)}
+.stock.out{color:var(--tarmac-soft)}
 .stock{display:inline-flex;align-items:center;gap:6px;font-weight:800}
 .stock::before{content:&quot;&quot;;width:8px;height:8px;border-radius:50%;background:currentColor}
 .stock.low{color:var(--low)}.stock.ok{color:var(--ok)}
-.add{margin-top:16px;min-height:52px;border:0;background:var(--tarmac);color:var(--white);font:800 16px var(--font);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;border-radius:4px;transition:background .2s,color .2s}
+.add{position:relative;overflow:hidden;isolation:isolate;margin-top:auto;min-height:52px;width:100%;border:0;background:var(--tarmac);color:var(--white);font:800 16px var(--font);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;border-radius:4px;transition:background .2s,color .2s}
 .add:hover{background:var(--yellow);color:var(--tarmac)}
+.add:active{transform:translateY(1px)}
+.add::before{content:&quot;&quot;;position:absolute;inset:0;z-index:-1;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .32s cubic-bezier(.16,1,.3,1)}
+.add.is-added{color:var(--tarmac)}
+.add.is-added::before{transform:scaleX(1)}
+.add .ic-check{display:none}
+.add.is-added .ic-cart{display:none}
+.add.is-added .ic-check{display:block}
+.btn-primary:active{transform:skewX(-8deg) translateY(1px)}
+.chip span{transition:background-color .15s,border-color .15s,color .15s}
+.cart-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:4px;background:var(--yellow);color:var(--tarmac);font-size:13px;font-weight:900;letter-spacing:0}
+.cart-count[hidden]{display:none}
+.cart-count.pop{animation:pop .36s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){
+  .bib,.bib:hover,.btn-primary,.btn-primary:hover,.add:active{transition:none;transform:none}
+  .btn-primary:hover{transform:skewX(-8deg)}
+  .add::before{transition:none}
+  .cart-count.pop{animation:none}
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width:1180px){
@@ -420,24 +460,33 @@ img,svg{display:block}
   .trust li:nth-child(3){padding-left:0}
 }
 @media (max-width:900px){
-  .nav ul{display:none}
+  .nav{flex-wrap:wrap;row-gap:14px;padding-bottom:14px}
+  .nav ul{order:3;flex:0 0 calc(100% + 2 * var(--gutter));gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter);scroll-padding-inline:var(--gutter)}
+  .nav ul::-webkit-scrollbar{display:none}
+  .nav ul a{display:flex;align-items:center;min-height:44px;padding:0 16px;border:2px solid rgba(255,255,255,.5);font-size:14px;white-space:nowrap;opacity:1}
+  .nav ul a:hover{text-decoration:none;border-color:var(--white)}
   .hero{display:flex;flex-direction:column}
   .hero-body{display:contents}
-  .hero-copy{order:1;padding:20px var(--gutter) 32px}
+  .hero-copy{order:1;padding:12px var(--gutter) 28px}
   .lede{font-size:18px;margin-top:20px}
   .ctas{margin-top:24px}
   .trust{order:2}
-  .hero-photo{order:3;min-height:0;height:200px}
+  .hero-photo{display:none}
   .deals{padding:60px var(--gutter) 80px}
   .deals-head{flex-direction:column;align-items:flex-start;gap:8px}
 }
 @media (max-width:560px){
   .brand{font-size:24px}
+  .bib{padding:14px 14px 18px}
+  .bib h3{min-height:0}
   .ctas{flex-direction:column;align-items:stretch}
   .btn-primary,.btn-secondary{justify-content:center}
-  .trust{grid-template-columns:1fr}
-  .trust li,.trust li + li{padding:12px 0}
-  .trust li + li{border-top:1px solid rgba(13,15,26,.15)}
+  .trust{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px}
+  .trust li,.trust li + li{padding:12px 0;font-size:14px;line-height:1.25}
+  .trust li:nth-child(n+3){border-top:1px solid rgba(13,15,26,.15)}
+  .trust .big{font-size:24px}
+  .rating{gap:8px}
+  .rating .from{display:none}
   .deal-grid{grid-template-columns:1fr}
 }
 </style>
@@ -453,20 +502,21 @@ img,svg{display:block}
   <symbol id=&quot;i-cart&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M3 4h2l2.4 11h10.8L21 8H6.3&quot;/><circle cx=&quot;9&quot; cy=&quot;19.5&quot; r=&quot;1.4&quot;/><circle cx=&quot;17&quot; cy=&quot;19.5&quot; r=&quot;1.4&quot;/></symbol>
   <symbol id=&quot;i-arrow&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.4&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;M5 12h14M13 6l6 6-6 6&quot;/></symbol>
   <symbol id=&quot;i-target&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;8&quot;/><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;3&quot;/><path d=&quot;M12 1v4M12 19v4M1 12h4M19 12h4&quot;/></symbol>
+  <symbol id=&quot;i-check&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><path d=&quot;m5 12.5 4.5 4.5L19 7.5&quot;/></symbol>
   <symbol id=&quot;i-photo&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;14&quot; rx=&quot;1.5&quot;/><circle cx=&quot;9&quot; cy=&quot;10&quot; r=&quot;1.8&quot;/><path d=&quot;m4 18 5-5 4 4 3-3 4 4&quot;/></symbol>
 </svg>
 
 <header class=&quot;hero&quot;>
   <nav class=&quot;nav&quot; aria-label=&quot;Main&quot;>
-    <a class=&quot;brand&quot; href=&quot;#&quot;><b>Gearline</b>Cycles</a>
+    <a class=&quot;brand&quot; href=&quot;#&quot;><b>Gearline</b> Cycles</a>
     <ul>
       <li><a href=&quot;#&quot;>Road</a></li>
       <li><a href=&quot;#&quot;>Gravel</a></li>
       <li><a href=&quot;#&quot;>City</a></li>
       <li><a href=&quot;#&quot;>E-bikes</a></li>
-      <li><a href=&quot;#&quot;>Deals</a></li>
+      <li><a href=&quot;#deals&quot;>Deals</a></li>
     </ul>
-    <a class=&quot;nav-cart&quot; href=&quot;#&quot;><svg width=&quot;22&quot; height=&quot;22&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg>Cart</a>
+    <a class=&quot;nav-cart&quot; href=&quot;#&quot;><svg width=&quot;22&quot; height=&quot;22&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg>Cart<span class=&quot;cart-count num&quot; hidden aria-hidden=&quot;true&quot;>0</span><span class=&quot;vh cart-items&quot;></span></a>
   </nav>
 
   <div class=&quot;hero-body&quot;>
@@ -474,7 +524,7 @@ img,svg{display:block}
       <h1>The right bike for every ride. <span class=&quot;y&quot;>Ready in <span class=&quot;nb&quot;>48 hours.</span></span></h1>
       <p class=&quot;lede&quot;>Expert-built bikes, free assembly and a 30-day test ride.</p>
       <div class=&quot;ctas&quot;>
-        <a class=&quot;btn-primary&quot; href=&quot;#&quot;><span>Shop bikes <svg width=&quot;22&quot; height=&quot;22&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-arrow&quot;/></svg></span></a>
+        <a class=&quot;btn-primary&quot; href=&quot;#&quot;><span>Shop all bikes <svg width=&quot;22&quot; height=&quot;22&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-arrow&quot;/></svg></span></a>
         <a class=&quot;btn-secondary&quot; href=&quot;#&quot;><span><svg width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-target&quot;/></svg>Find my bike</span></a>
       </div>
     </div>
@@ -486,15 +536,16 @@ img,svg{display:block}
 
 
   <ul class=&quot;trust&quot; aria-label=&quot;Why buy from Gearline&quot;>
-    <li><svg width=&quot;26&quot; height=&quot;26&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-truck&quot;/></svg>Free delivery over €500</li>
+    <li><svg width=&quot;26&quot; height=&quot;26&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-truck&quot;/></svg>Free delivery on orders over €500</li>
     <li><svg width=&quot;26&quot; height=&quot;26&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-return&quot;/></svg>30-day returns</li>
     <li><svg width=&quot;26&quot; height=&quot;26&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-shield&quot;/></svg>2-year warranty</li>
-    <li><svg width=&quot;24&quot; height=&quot;24&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-star&quot;/></svg><span class=&quot;big num&quot;>4.8/5</span>2,300 reviews</li>
+    <li><a class=&quot;rating&quot; href=&quot;#&quot;><svg width=&quot;24&quot; height=&quot;24&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-star&quot;/></svg><span class=&quot;big num&quot;>4.8/5</span><span><span class=&quot;from&quot;>from </span>2,300 reviews</span></a></li>
   </ul>
 </header>
 
+<p class=&quot;vh&quot; id=&quot;cart-status&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;></p>
 <main>
-<section class=&quot;deals&quot; aria-labelledby=&quot;deals-title&quot;>
+<section class=&quot;deals&quot; id=&quot;deals&quot; aria-labelledby=&quot;deals-title&quot;>
   <div class=&quot;deals-head&quot;>
     <h2 id=&quot;deals-title&quot;>Hot deals</h2>
     <a class=&quot;view-all&quot; href=&quot;#&quot;>View all deals <svg width=&quot;18&quot; height=&quot;18&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-arrow&quot;/></svg></a>
@@ -502,44 +553,94 @@ img,svg{display:block}
 
   <ul class=&quot;deal-grid&quot;>
     <li class=&quot;bib&quot;>
-      <span class=&quot;pin tl&quot;></span><span class=&quot;pin tr&quot;></span><span class=&quot;pin bl&quot;></span><span class=&quot;pin br&quot;></span>
-      <div class=&quot;bib-top&quot;><span class=&quot;bib-cat&quot;>Gravel</span><span class=&quot;bib-off num&quot; aria-label=&quot;17 percent off&quot;>−17%</span></div>
       <figure class=&quot;plate&quot;><svg class=&quot;bike-mark&quot; viewBox=&quot;0 0 64 40&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-bike&quot;/></svg><figcaption class=&quot;ph-label&quot;>Product photo: gravel bike, side view</figcaption></figure>
-      <h3>Trailblazer G2 Gravel</h3>
-      <p class=&quot;price num&quot;><span class=&quot;now&quot;>€1,899</span><s aria-label=&quot;was €2,299&quot;>€2,299</s></p>
-      <p class=&quot;meta&quot;><span>Sizes S to XL</span><span class=&quot;stock low&quot;>3 left in stock</span></p>
-      <button class=&quot;add&quot; type=&quot;button&quot;><svg width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg>Add to cart</button>
+      <div class=&quot;bib-top&quot;><span class=&quot;bib-cat&quot;>Gravel</span><span class=&quot;bib-off num&quot;><span aria-hidden=&quot;true&quot;>−17%</span><span class=&quot;vh&quot;>17% off</span></span></div>
+      <h3 id=&quot;name-g2&quot;>Trailblazer G2 Gravel</h3>
+      <p class=&quot;price num&quot;><span class=&quot;now&quot;><span class=&quot;vh&quot;>Now </span>€1,899</span><span class=&quot;was&quot;><s><span class=&quot;vh&quot;>Was </span>€2,299</s> <span class=&quot;save&quot;>Save €400</span></span></p>
+      <fieldset class=&quot;sizes&quot;>
+        <legend>Size<span class=&quot;vh&quot;> for Trailblazer G2 Gravel</span></legend>
+        <div class=&quot;chips&quot;><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-g2&quot; value=&quot;S&quot;><span>S</span></label><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-g2&quot; value=&quot;M&quot;><span>M</span></label><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-g2&quot; value=&quot;L&quot;><span>L</span></label><label class=&quot;chip is-out&quot;><input type=&quot;radio&quot; name=&quot;size-g2&quot; value=&quot;XL&quot; disabled><span>XL<span class=&quot;vh&quot;> sold out</span></span></label></div>
+      </fieldset>
+      <p class=&quot;stock low&quot;>3 left in stock</p>
+      <p class=&quot;size-msg&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;></p>
+      <button class=&quot;add&quot; type=&quot;button&quot; aria-describedby=&quot;name-g2&quot;><svg class=&quot;ic-cart&quot; width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg><svg class=&quot;ic-check&quot; width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-check&quot;/></svg><span class=&quot;add-label&quot;>Add to cart</span></button>
     </li>
     <li class=&quot;bib&quot;>
-      <span class=&quot;pin tl&quot;></span><span class=&quot;pin tr&quot;></span><span class=&quot;pin bl&quot;></span><span class=&quot;pin br&quot;></span>
-      <div class=&quot;bib-top&quot;><span class=&quot;bib-cat&quot;>City</span><span class=&quot;bib-off num&quot; aria-label=&quot;19 percent off&quot;>−19%</span></div>
       <figure class=&quot;plate&quot;><svg class=&quot;bike-mark&quot; viewBox=&quot;0 0 64 40&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-bike&quot;/></svg><figcaption class=&quot;ph-label&quot;>Product photo: city bike, side view</figcaption></figure>
-      <h3>Urban Glide City</h3>
-      <p class=&quot;price num&quot;><span class=&quot;now&quot;>€649</span><s aria-label=&quot;was €799&quot;>€799</s></p>
-      <p class=&quot;meta&quot;><span>Sizes M to L</span><span class=&quot;stock ok&quot;>In stock</span></p>
-      <button class=&quot;add&quot; type=&quot;button&quot;><svg width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg>Add to cart</button>
+      <div class=&quot;bib-top&quot;><span class=&quot;bib-cat&quot;>City</span><span class=&quot;bib-off num&quot;><span aria-hidden=&quot;true&quot;>−19%</span><span class=&quot;vh&quot;>19% off</span></span></div>
+      <h3 id=&quot;name-glide&quot;>Urban Glide City</h3>
+      <p class=&quot;price num&quot;><span class=&quot;now&quot;><span class=&quot;vh&quot;>Now </span>€649</span><span class=&quot;was&quot;><s><span class=&quot;vh&quot;>Was </span>€799</s> <span class=&quot;save&quot;>Save €150</span></span></p>
+      <fieldset class=&quot;sizes&quot;>
+        <legend>Size<span class=&quot;vh&quot;> for Urban Glide City</span></legend>
+        <div class=&quot;chips&quot;><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-glide&quot; value=&quot;M&quot;><span>M</span></label><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-glide&quot; value=&quot;L&quot;><span>L</span></label></div>
+      </fieldset>
+      <p class=&quot;stock ok&quot;>In stock</p>
+      <p class=&quot;size-msg&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;></p>
+      <button class=&quot;add&quot; type=&quot;button&quot; aria-describedby=&quot;name-glide&quot;><svg class=&quot;ic-cart&quot; width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg><svg class=&quot;ic-check&quot; width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-check&quot;/></svg><span class=&quot;add-label&quot;>Add to cart</span></button>
     </li>
     <li class=&quot;bib&quot;>
-      <span class=&quot;pin tl&quot;></span><span class=&quot;pin tr&quot;></span><span class=&quot;pin bl&quot;></span><span class=&quot;pin br&quot;></span>
-      <div class=&quot;bib-top&quot;><span class=&quot;bib-cat&quot;>E-bike</span><span class=&quot;bib-off num&quot; aria-label=&quot;17 percent off&quot;>−17%</span></div>
       <figure class=&quot;plate&quot;><svg class=&quot;bike-mark&quot; viewBox=&quot;0 0 64 40&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-bike&quot;/></svg><figcaption class=&quot;ph-label&quot;>Product photo: e-commuter bike, side view</figcaption></figure>
-      <h3>Volt E-Commute</h3>
-      <p class=&quot;price num&quot;><span class=&quot;now&quot;>€2,499</span><s aria-label=&quot;was €2,999&quot;>€2,999</s></p>
-      <p class=&quot;meta&quot;><span>120 km range</span><span class=&quot;stock low&quot;>5 left in stock</span></p>
-      <button class=&quot;add&quot; type=&quot;button&quot;><svg width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg>Add to cart</button>
+      <div class=&quot;bib-top&quot;><span class=&quot;bib-cat&quot;>E-bike</span><span class=&quot;bib-off num&quot;><span aria-hidden=&quot;true&quot;>−17%</span><span class=&quot;vh&quot;>17% off</span></span></div>
+      <h3 id=&quot;name-volt&quot;>Volt E-Commute</h3>
+      <p class=&quot;price num&quot;><span class=&quot;now&quot;><span class=&quot;vh&quot;>Now </span>€2,499</span><span class=&quot;was&quot;><s><span class=&quot;vh&quot;>Was </span>€2,999</s> <span class=&quot;save&quot;>Save €500</span></span></p>
+      <p class=&quot;spec&quot;><span class=&quot;spec-k&quot;>Range</span> 120 km</p>
+      <p class=&quot;stock ok&quot;>5 in stock</p>
+      <p class=&quot;size-msg&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;></p>
+      <button class=&quot;add&quot; type=&quot;button&quot; aria-describedby=&quot;name-volt&quot;><svg class=&quot;ic-cart&quot; width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg><svg class=&quot;ic-check&quot; width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-check&quot;/></svg><span class=&quot;add-label&quot;>Add to cart</span></button>
     </li>
     <li class=&quot;bib&quot;>
-      <span class=&quot;pin tl&quot;></span><span class=&quot;pin tr&quot;></span><span class=&quot;pin bl&quot;></span><span class=&quot;pin br&quot;></span>
-      <div class=&quot;bib-top&quot;><span class=&quot;bib-cat&quot;>Road</span><span class=&quot;bib-off num&quot; aria-label=&quot;13 percent off&quot;>−13%</span></div>
       <figure class=&quot;plate&quot;><svg class=&quot;bike-mark&quot; viewBox=&quot;0 0 64 40&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-bike&quot;/></svg><figcaption class=&quot;ph-label&quot;>Product photo: road bike, side view</figcaption></figure>
-      <h3>Aero R5 Road</h3>
-      <p class=&quot;price num&quot;><span class=&quot;now&quot;>€2,799</span><s aria-label=&quot;was €3,199&quot;>€3,199</s></p>
-      <p class=&quot;meta&quot;><span>Sizes S to XL</span><span class=&quot;stock ok&quot;>In stock</span></p>
-      <button class=&quot;add&quot; type=&quot;button&quot;><svg width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg>Add to cart</button>
+      <div class=&quot;bib-top&quot;><span class=&quot;bib-cat&quot;>Road</span><span class=&quot;bib-off num&quot;><span aria-hidden=&quot;true&quot;>−13%</span><span class=&quot;vh&quot;>13% off</span></span></div>
+      <h3 id=&quot;name-r5&quot;>Aero R5 Road</h3>
+      <p class=&quot;price num&quot;><span class=&quot;now&quot;><span class=&quot;vh&quot;>Now </span>€2,799</span><span class=&quot;was&quot;><s><span class=&quot;vh&quot;>Was </span>€3,199</s> <span class=&quot;save&quot;>Save €400</span></span></p>
+      <fieldset class=&quot;sizes&quot;>
+        <legend>Size<span class=&quot;vh&quot;> for Aero R5 Road</span></legend>
+        <div class=&quot;chips&quot;><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-r5&quot; value=&quot;S&quot;><span>S</span></label><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-r5&quot; value=&quot;M&quot;><span>M</span></label><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-r5&quot; value=&quot;L&quot;><span>L</span></label><label class=&quot;chip&quot;><input type=&quot;radio&quot; name=&quot;size-r5&quot; value=&quot;XL&quot;><span>XL</span></label></div>
+      </fieldset>
+      <p class=&quot;stock ok&quot;>In stock</p>
+      <p class=&quot;size-msg&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;></p>
+      <button class=&quot;add&quot; type=&quot;button&quot; aria-describedby=&quot;name-r5&quot;><svg class=&quot;ic-cart&quot; width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-cart&quot;/></svg><svg class=&quot;ic-check&quot; width=&quot;20&quot; height=&quot;20&quot; aria-hidden=&quot;true&quot;><use href=&quot;#i-check&quot;/></svg><span class=&quot;add-label&quot;>Add to cart</span></button>
     </li>
   </ul>
 </section>
 </main>
+<script>
+// Sized bikes need a size before they go in the cart.
+document.querySelectorAll('.bib').forEach(function(card){
+  var btn=card.querySelector('.add'), msg=card.querySelector('.size-msg'), sizes=card.querySelector('.sizes');
+  if(!btn) return;
+  btn.addEventListener('click',function(){
+    if(sizes &amp;&amp; !sizes.querySelector('input:checked')){
+      msg.textContent='Choose a size first.';
+      card.classList.add('needs-size');
+      var first=sizes.querySelector('input:not(:disabled)'); if(first) first.focus();
+      return;
+    }
+    msg.textContent=''; card.classList.remove('needs-size');
+    added(card, btn, sizes);
+  });
+  if(sizes) sizes.addEventListener('change',function(){ msg.textContent=''; card.classList.remove('needs-size'); });
+});
+// Add to cart feedback: the button sweeps to yellow and reads &quot;Added&quot;, the cart count pops.
+var count=0, countEl=document.querySelector('.cart-count'), cartStatus=document.getElementById('cart-status');
+function added(card, btn, sizes){
+  var label=btn.querySelector('.add-label'), name=card.querySelector('h3').textContent;
+  var size=sizes ? sizes.querySelector('input:checked').value : null;
+  count++;
+  countEl.textContent=count; countEl.hidden=false;
+  document.querySelector('.cart-items').textContent=', '+count+(count===1?' item':' items');
+  countEl.classList.remove('pop'); void countEl.offsetWidth; countEl.classList.add('pop');
+  cartStatus.textContent=name+(size?', size '+size:'')+' added to cart. '+count+(count===1?' item':' items')+' in cart.';
+  btn.classList.add('is-added'); label.textContent='Added';
+  clearTimeout(btn._t);
+  btn._t=setTimeout(function(){ btn.classList.remove('is-added'); label.textContent='Add to cart'; },1800);
+}
+// A product photo that fails to load falls back to the labelled placeholder underneath.
+document.querySelectorAll('.plate img').forEach(function(img){
+  function drop(){ img.remove(); }
+  if(img.complete &amp;&amp; !img.naturalWidth) drop(); else img.addEventListener('error',drop);
+});
+</script>
 </body>
 </html>
 " loading="eager"></iframe></div>

@@ -42,13 +42,13 @@ img,svg{display:block}
 .brand{display:flex;align-items:center;min-height:44px;gap:10px;text-decoration:none;font-stretch:62%;font-weight:900;font-style:italic;font-size:30px;letter-spacing:.01em;text-transform:uppercase;line-height:1}
 .brand b{background:var(--yellow);color:var(--tarmac);padding:4px 8px 2px;font-weight:900}
 .nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:.04em}
-.nav ul a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;text-decoration:none;opacity:.86}
+.nav ul a{text-decoration:none;opacity:.86}
 .nav ul a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
 .nav-cart{position:relative;display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;text-transform:uppercase;font-size:15px;letter-spacing:.04em;min-height:44px}
 
 .hero-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:stretch;gap:56px;padding:28px var(--gutter) 56px}
 .hero-copy{display:flex;flex-direction:column;justify-content:center}
-.hero h1{margin:0;font-stretch:62%;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(52px,8.2vw,124px);line-height:.86;letter-spacing:-0.01em}
+.hero h1{margin:0;font-stretch:62%;font-weight:900;font-style:italic;text-transform:uppercase;font-size:clamp(60px,8.2vw,124px);line-height:.86;letter-spacing:-0.01em}
 .hero h1 .y{color:var(--yellow);display:block}
 .nb{white-space:nowrap}
 .lede{font-size:20px;line-height:1.45;margin:28px 0 0;max-width:30ch;font-weight:500}
@@ -148,7 +148,7 @@ img,svg{display:block}
   .nav{flex-wrap:wrap;row-gap:14px;padding-bottom:14px}
   .nav ul{order:3;flex:0 0 calc(100% + 2 * var(--gutter));gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter);scroll-padding-inline:var(--gutter)}
   .nav ul::-webkit-scrollbar{display:none}
-  .nav ul a{display:flex;align-items:center;min-height:44px;padding:0 16px;border:2px solid rgba(255,255,255,.5);font-size:14px;white-space:nowrap;opacity:1}
+  .nav ul a{display:flex;align-items:center;min-height:44px;padding:0 16px;border:2px solid rgba(255,255,255,.35);font-size:14px;white-space:nowrap;opacity:1}
   .nav ul a:hover{text-decoration:none;border-color:var(--white)}
   .hero{display:flex;flex-direction:column}
   .hero-body{display:contents}
@@ -201,7 +201,7 @@ img,svg{display:block}
       <li><a href="#">E-bikes</a></li>
       <li><a href="#deals">Deals</a></li>
     </ul>
-    <a class="nav-cart" href="#"><svg width="22" height="22" aria-hidden="true"><use href="#i-cart"/></svg>Cart<span class="cart-count num" hidden aria-hidden="true">0</span><span class="vh cart-items"></span></a>
+    <a class="nav-cart" href="#"><svg width="22" height="22" aria-hidden="true"><use href="#i-cart"/></svg>Cart<span class="cart-count num" hidden>0</span><span class="vh"> items</span></a>
   </nav>
 
   <div class="hero-body">
@@ -243,7 +243,7 @@ img,svg{display:block}
       <h3 id="name-g2">Trailblazer G2 Gravel</h3>
       <p class="price num"><span class="now"><span class="vh">Now </span>€1,899</span><span class="was"><s><span class="vh">Was </span>€2,299</s> <span class="save">Save €400</span></span></p>
       <fieldset class="sizes">
-        <legend>Size<span class="vh"> for Trailblazer G2 Gravel</span></legend>
+        <legend>Size</legend>
         <div class="chips"><label class="chip"><input type="radio" name="size-g2" value="S"><span>S</span></label><label class="chip"><input type="radio" name="size-g2" value="M"><span>M</span></label><label class="chip"><input type="radio" name="size-g2" value="L"><span>L</span></label><label class="chip is-out"><input type="radio" name="size-g2" value="XL" disabled><span>XL<span class="vh"> sold out</span></span></label></div>
       </fieldset>
       <p class="stock low">3 left in stock</p>
@@ -256,7 +256,7 @@ img,svg{display:block}
       <h3 id="name-glide">Urban Glide City</h3>
       <p class="price num"><span class="now"><span class="vh">Now </span>€649</span><span class="was"><s><span class="vh">Was </span>€799</s> <span class="save">Save €150</span></span></p>
       <fieldset class="sizes">
-        <legend>Size<span class="vh"> for Urban Glide City</span></legend>
+        <legend>Size</legend>
         <div class="chips"><label class="chip"><input type="radio" name="size-glide" value="M"><span>M</span></label><label class="chip"><input type="radio" name="size-glide" value="L"><span>L</span></label></div>
       </fieldset>
       <p class="stock ok">In stock</p>
@@ -279,7 +279,7 @@ img,svg{display:block}
       <h3 id="name-r5">Aero R5 Road</h3>
       <p class="price num"><span class="now"><span class="vh">Now </span>€2,799</span><span class="was"><s><span class="vh">Was </span>€3,199</s> <span class="save">Save €400</span></span></p>
       <fieldset class="sizes">
-        <legend>Size<span class="vh"> for Aero R5 Road</span></legend>
+        <legend>Size</legend>
         <div class="chips"><label class="chip"><input type="radio" name="size-r5" value="S"><span>S</span></label><label class="chip"><input type="radio" name="size-r5" value="M"><span>M</span></label><label class="chip"><input type="radio" name="size-r5" value="L"><span>L</span></label><label class="chip"><input type="radio" name="size-r5" value="XL"><span>XL</span></label></div>
       </fieldset>
       <p class="stock ok">In stock</p>
@@ -313,7 +313,6 @@ function added(card, btn, sizes){
   var size=sizes ? sizes.querySelector('input:checked').value : null;
   count++;
   countEl.textContent=count; countEl.hidden=false;
-  document.querySelector('.cart-items').textContent=', '+count+(count===1?' item':' items');
   countEl.classList.remove('pop'); void countEl.offsetWidth; countEl.classList.add('pop');
   cartStatus.textContent=name+(size?', size '+size:'')+' added to cart. '+count+(count===1?' item':' items')+' in cart.';
   btn.classList.add('is-added'); label.textContent='Added';
