@@ -49,9 +49,37 @@ typography:
     fontWeight: 800
     lineHeight: 1
     fontVariation: "\"wdth\" 75"
+  wordmark:
+    fontFamily: "Archivo, Arial Narrow, sans-serif"
+    fontSize: "30px"
+    fontWeight: 900
+    lineHeight: 1
+    letterSpacing: "0.01em"
+    fontVariation: "\"wdth\" 62"
+  wordmark-small:
+    fontFamily: "Archivo, Arial Narrow, sans-serif"
+    fontSize: "24px"
+    fontWeight: 900
+    lineHeight: 1
+    fontVariation: "\"wdth\" 62"
+  button-label:
+    fontFamily: "Archivo, Arial Narrow, sans-serif"
+    fontSize: "22px"
+    fontWeight: 900
+    letterSpacing: "0.02em"
+    fontVariation: "\"wdth\" 75"
+  control:
+    fontFamily: "Archivo, Arial Narrow, sans-serif"
+    fontSize: "17px"
+    fontWeight: 700
   lede:
     fontFamily: "Archivo, Arial Narrow, sans-serif"
     fontSize: "20px"
+    fontWeight: 500
+    lineHeight: 1.45
+  lede-small:
+    fontFamily: "Archivo, Arial Narrow, sans-serif"
+    fontSize: "18px"
     fontWeight: 500
     lineHeight: 1.45
   body:
@@ -69,6 +97,11 @@ typography:
     fontSize: "13px"
     fontWeight: 800
     letterSpacing: "0.06em"
+  caption:
+    fontFamily: "Archivo, Arial Narrow, sans-serif"
+    fontSize: "14px"
+    fontWeight: 500
+    lineHeight: 1.35
 rounded:
   none: "0px"
   xs: "4px"
@@ -87,7 +120,7 @@ components:
   button-primary:
     backgroundColor: "{colors.yellow}"
     textColor: "{colors.tarmac}"
-    typography: "{typography.label}"
+    typography: "{typography.button-label}"
     rounded: "{rounded.none}"
     padding: "18px 34px"
     height: "60px"
@@ -97,6 +130,7 @@ components:
   button-secondary:
     backgroundColor: "transparent"
     textColor: "{colors.white}"
+    typography: "{typography.control}"
     rounded: "{rounded.none}"
     padding: "16px 20px"
     height: "60px"
@@ -131,6 +165,7 @@ components:
   image-label:
     backgroundColor: "{colors.cobalt-ink}"
     textColor: "#E4E8FF"
+    typography: "{typography.caption}"
     padding: "10px 14px"
 ---
 
@@ -196,8 +231,12 @@ Two saturated team colours on a cool, near-neutral ground, with a near-black tha
 - **Discount** (900, 58px, 62% width, tabular): the bib number. The largest figure on each card.
 - **Price** (900, 42px, 62% width, tabular): the current price, in Race Cobalt.
 - **Title** (800, 26px, 75% width, uppercase): product names on bibs.
-- **Lede** (500, 20px, line height 1.45, max 30ch): the supporting line under the headline. Drops to 18px under 900px.
+- **Wordmark** (900 italic, 30px, 62% width, uppercase): the logo, and the 4.8/5 figure in the trust strip. **Wordmark Small** (24px) replaces it on phones.
+- **Button Label** (900, 22px, 75% width, uppercase, 0.02em tracking): the primary button only.
+- **Control** (700, 17px): the secondary button label.
+- **Lede** (500, 20px, line height 1.45, max 30ch): the supporting line under the headline. Under 900px it uses **Lede Small** (18px).
 - **Body** (400, 16px, line height 1.45): running text and spec lines (spec lines use 600 at 14px).
+- **Caption** (500, 14px, line height 1.35): photo placeholder captions and spec lines (spec lines at 600). The bib plate caption is the one 12.5px exception.
 - **Label** (700, 15px, uppercase, 0.04em tracking): nav links, the cart link, "View all deals" (800).
 - **Label Small** (800, 13px, uppercase, 0.06em tracking): the category on each bib.
 
@@ -240,7 +279,7 @@ Hard edges for anything that carries the brand, soft corners only on things you 
 - **Soft:** bibs have 10px corners. Photo plates inside bibs and the Add to cart button have 4px corners.
 - **Punched:** four 10px circles, 10px in from each bib corner.
 - **Torn:** a 2px dashed rule in Tear Line separates price from specs on every bib.
-- **Textured placeholders:** photo areas carry a faint diagonal hatch (1 to 2px lines at -60 degrees) until real photography replaces them.
+- **Flat placeholders:** photo areas are flat fields of colour with a faint bike outline and a caption chip until real photography replaces them. No stripes, hatching or gradients.
 
 ## Components
 
@@ -273,7 +312,7 @@ The signature component. Every bib holds the same fields in the same order so a 
 - **Cart:** cart icon plus "CART", always visible. Links hide under 900px.
 
 ### Image Placeholder
-- **Style:** a hatched field (Cobalt Deep on the hero, Start Line Grey in bibs) with a faint bike outline and a caption chip that names the shot, for example "Product photo: gravel bike, side view". Replace with real photography; keep the caption as the image's alt text.
+- **Style:** a flat field (Cobalt Deep on the hero, Start Line Grey in bibs) with a faint bike outline and a caption chip that names the shot, for example "Product photo: gravel bike, side view". Replace with real photography; keep the caption as the image's alt text.
 
 ## Do's and Don'ts
 
@@ -291,4 +330,4 @@ The signature component. Every bib holds the same fields in the same order so a 
 - **Don't** add shadows to fields, strips or buttons; only bibs lift.
 - **Don't** round the hero buttons or remove their slant.
 - **Don't** add countdown timers or other fake urgency; stock counts are the only scarcity signal and must be true.
-- **Don't** use emoji, gradient blobs, glows or glass effects.
+- **Don't** use emoji, gradient blobs, glows, glass effects or decorative stripe patterns.

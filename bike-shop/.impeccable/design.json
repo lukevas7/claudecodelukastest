@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-02T05:38:09+00:00",
+  "generatedAt": "2026-10-02T05:48:19+00:00",
   "title": "Design System: Gearline Cycles (Direction B)",
   "extensions": {
     "colorMeta": {
@@ -161,6 +161,30 @@
       "label-small": {
         "displayName": "Label Small",
         "purpose": "Category on each bib, in Race Cobalt."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Logo and the 4.8/5 trust figure."
+      },
+      "wordmark-small": {
+        "displayName": "Wordmark Small",
+        "purpose": "Logo on phones."
+      },
+      "button-label": {
+        "displayName": "Button Label",
+        "purpose": "Primary button only."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Secondary button label."
+      },
+      "lede-small": {
+        "displayName": "Lede Small",
+        "purpose": "Lede under 900px."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Photo captions and spec lines."
       }
     },
     "shadows": [
@@ -326,7 +350,7 @@
       "Don't add shadows to fields, strips or buttons; only bibs lift.",
       "Don't round the hero buttons or remove their slant.",
       "Don't add countdown timers or other fake urgency; stock counts are the only scarcity signal and must be true.",
-      "Don't use emoji, gradient blobs, glows or glass effects."
+      "Don't use emoji, gradient blobs, glows, glass effects or decorative stripe patterns."
     ]
   }
 }
